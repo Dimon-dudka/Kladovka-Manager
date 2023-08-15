@@ -11,6 +11,7 @@
 
 //  Derived from QWidget widgets
 #include "mainmenu.h"
+#include "newkladovkamenu.h"
 
 class WidgetManager : public QStackedWidget
 {
@@ -19,6 +20,7 @@ class WidgetManager : public QStackedWidget
 private:
 
     MainMenu *mainMenuWidget;
+    NewKladovkaMenu *newKladovkaMenuWidget;
 
 public:
 
@@ -30,7 +32,7 @@ public slots:
 private slots:
 
     void setCurrentMainMenuWidget();
-    //void setCurrentNewKladovkaWidget();
+    void setCurrentNewKladovkaWidget();
     //void setCurrentOpenKladovkaWidget();
 
 signals:

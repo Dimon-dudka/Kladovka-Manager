@@ -8,8 +8,13 @@ WidgetManager::WidgetManager(QStackedWidget * parrent):QStackedWidget(parrent)
     setMinimumSize(200,150);
 
     mainMenuWidget = new MainMenu;
+    newKladovkaMenuWidget = new NewKladovkaMenu;
 
     addWidget(mainMenuWidget);
+    addWidget(newKladovkaMenuWidget);
+
+    connect(mainMenuWidget,SIGNAL(newKladovkaSignal()),this,SLOT(setCurrentNewKladovkaWidget()));
+    connect(newKladovkaMenuWidget,SIGNAL(backToMainMenuSignal()),this,SLOT(setCurrentMainMenuWidget()));
 
     setCurrentWidget(mainMenuWidget);
 
@@ -20,11 +25,11 @@ WidgetManager::WidgetManager(QStackedWidget * parrent):QStackedWidget(parrent)
 void WidgetManager::setCurrentMainMenuWidget(){
     setCurrentWidget(mainMenuWidget);
 }
-/*
+
 void WidgetManager::setCurrentNewKladovkaWidget(){
-
+    setCurrentWidget(newKladovkaMenuWidget);
 }
-
+/*
 void WidgetManager::setCurrentOpenKladovkaWidget(){
 
 }

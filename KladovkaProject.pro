@@ -11,10 +11,12 @@ CONFIG += c++17
 SOURCES += \
     main.cpp \
     mainmenu.cpp \
+    newkladovkamenu.cpp \
     widgetmanager.cpp
 
 HEADERS += \
     mainmenu.h \
+    newkladovkamenu.h \
     widgetmanager.h
 
 FORMS +=
