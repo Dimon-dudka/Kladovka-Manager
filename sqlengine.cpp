@@ -7,18 +7,21 @@ SQLEngine::SQLEngine(QObject *parrent): QObject(parrent)
 
 void SQLEngine::buildConnectionAndDB(){
 
-    db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("C:/Users/D/Documents/Kladovka/KladovkaProject/Kladovki.sqlite");
-    db.setUserName("user");
-    db.setHostName("host");
-    if(!db.open()){
+    QString str;
+
+    //  Making connection and DB if not exists for DB with whole information
+
+    alldb = QSqlDatabase::addDatabase("QSQLITE");
+    alldb.setDatabaseName("C:/Users/D/Documents/Kladovka/KladovkaProject/allInfoKladovki.sqlite");
+
+    if(!alldb.open()){
         emit errorConnectionSignal("Data Base Error!");
         return;
     }
     else{
         qDebug()<<"Succes";
     }
-    QString str = "CREATE TABLE IF NOT EXISTS Kladovki("
+    str = "CREATE TABLE IF NOT EXISTS allInfoKladovki("
                   "id INTEGER PRIMARY KEY AUTOINCREMENT, "
                   "adress TEXT, "
                   "reck INTEGER, "
@@ -27,10 +30,42 @@ void SQLEngine::buildConnectionAndDB(){
                   ");";
     QSqlQuery query;
     if(!query.exec(str)){
+        emit errorConnectionSignal("Data Base Query Error 1!");
+        return;
+    }
+    else{
+        qDebug()<<"Succes";
+    }
+    query.clear();
+    alldb.close();
+
+
+    //Making connection for DB with adresses
+    alldb = QSqlDatabase::addDatabase("QSQLITE");
+    alldb.setDatabaseName("C:/Users/D/Documents/Kladovka/KladovkaProject/adressKladovki.sqlite");
+
+    if(!alldb.open()){
         emit errorConnectionSignal("Data Base Error!");
         return;
     }
     else{
         qDebug()<<"Succes";
     }
+
+    str = "CREATE TABLE IF NOT EXISTS adressKladovki("
+          "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+          "adress TEXT "
+          ");";
+
+    QSqlQuery querySecond;
+    if(!querySecond.exec(str)){
+        emit errorConnectionSignal("Data Base Query Error 2!");
+        return;
+    }
+    else{
+        qDebug()<<"Succes";
+    }
+
+    querySecond.clear();
+    alldb.close();
 }

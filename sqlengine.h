@@ -1,3 +1,5 @@
+//  SQL Engine has interface to answer on widget requests
+
 #pragma once
 
 #include <QtSql>
@@ -10,12 +12,13 @@ class SQLEngine : public QObject
 
 private:
 
-
-
     void createConnection();
 
 public:
-    QSqlDatabase db;
+    //allDB connection is for the DB with all information
+    QSqlDatabase alldb;
+    //adressDB is only for storages adresses
+    //QSqlDatabase adressesDB;
 
     SQLEngine(QObject *parrent=0);
     void buildConnectionAndDB();
