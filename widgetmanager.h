@@ -22,6 +22,7 @@ private:
     MainMenu *mainMenuWidget;
     NewKladovkaMenu *newKladovkaMenuWidget;
 
+
 public:
 
     WidgetManager(QStackedWidget * parrent = 0);

@@ -1,4 +1,5 @@
 QT       += core gui
+QT       += sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -12,11 +13,13 @@ SOURCES += \
     main.cpp \
     mainmenu.cpp \
     newkladovkamenu.cpp \
+    sqlengine.cpp \
     widgetmanager.cpp
 
 HEADERS += \
     mainmenu.h \
     newkladovkamenu.h \
+    sqlengine.h \
     widgetmanager.h
 
 FORMS +=
