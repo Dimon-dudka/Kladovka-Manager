@@ -25,11 +25,16 @@ public:
     SQLEngine(QObject *parrent=0);
     void buildConnectionAndDB();
 
+public slots:
     void insertAdressQuery(QString queryText);
 
 
 signals:
 
     void errorConnectionSignal(QString text);
+
+    //  Signals for add new Kladovka widget
+    void adressAlreadyExistsSignal(QString text);
+    void adressAddedSignal(QString text);
 
 };

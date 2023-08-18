@@ -32,10 +32,6 @@ MainMenu::MainMenu(QWidget *parrent) : QWidget(parrent)
     connect(openExistsKladovkaButton,SIGNAL(clicked()),this,SLOT(openExistsKladovkaSlotPrivate()));
     connect(exitButton,SIGNAL(clicked()),qApp,SLOT(quit()));
 
-    //connect(DBOpenProof,SIGNAL(errorConnectionSignal(QString)),this,SLOT(changeLabelAfterError(QString)));
-
-
-
     setLayout(mainMenuLayout);
 }
 
