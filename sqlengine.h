@@ -26,7 +26,7 @@ public:
     void buildConnectionAndDB();
 
 public slots:
-    void insertAdressQuery(QString queryText);
+    void insertAddressQuery(QString queryText);
 
 
 signals:
@@ -34,7 +34,7 @@ signals:
     void errorConnectionSignal(QString text);
 
     //  Signals for add new Kladovka widget
-    void adressAlreadyExistsSignal(QString text);
-    void adressAddedSignal(QString text);
+    void addressAlreadyExistsSignal(QString text);
+    void addressAddedSignal(QString text);
 
 };

@@ -1,45 +1,42 @@
 
 #include "newkladovkamenu.h"
 
-NewKladovkaMenu::NewKladovkaMenu(SQLEngine *test,QWidget * parrent):QWidget(parrent),insertToDBAdress(test)
+NewKladovkaMenu::NewKladovkaMenu(SQLEngine *test,QWidget * parrent):QWidget(parrent),insertToDBAddress(test)
 {
-    //insertToDBAdress = new SQLEngine;
+    //insertToDBAddress = new SQLEngine;
 
     sqlQueryStatus = new QLabel("");
     sqlQueryStatus->setAlignment(Qt::AlignCenter);
 
-    userInfoLabel = new QLabel("Enter the kladovka adress");
+    userInfoLabel = new QLabel("Enter the kladovka address");
     userInfoLabel->setAlignment(Qt::AlignCenter);
 
-    adressEditingLine = new QLineEdit;
-
-    adressFromLabel="";
-
+    addressEditingLine = new QLineEdit("");
 
     backToMainMenuButton = new QPushButton("Back To Menu");
-    pushTheAdressToSQLButton = new QPushButton("Enter the new adress");
+    pushTheAddressToSQLButton = new QPushButton("Enter the new address");
 
     buttonsLayout = new QHBoxLayout;
     buttonsLayout->addWidget(backToMainMenuButton);
-    buttonsLayout->addWidget(pushTheAdressToSQLButton);
+    buttonsLayout->addWidget(pushTheAddressToSQLButton);
 
     mainLayout = new QVBoxLayout;
     mainLayout->addWidget(sqlQueryStatus);
     mainLayout->addWidget(userInfoLabel);
-    mainLayout->addWidget(adressEditingLine);
+    mainLayout->addWidget(addressEditingLine);
     mainLayout->addLayout(buttonsLayout);
 
     connect(backToMainMenuButton,SIGNAL(clicked()),this,SLOT(backToMainMenuSlot()));
-    connect(adressEditingLine,SIGNAL(textChanged(QString)),this,SLOT(becomeStringFromLineEdit(QString)));
+    connect(addressEditingLine,SIGNAL(textChanged(QString)),this,SLOT(becomeStringFromLineEdit(QString)));
 
-    connect(pushTheAdressToSQLButton,SIGNAL(clicked())
+    connect(pushTheAddressToSQLButton,SIGNAL(clicked())
             ,this,SLOT(sendingSignalToSQLEngineSlot()));
 
-    connect(this,SIGNAL(queryToSQLEngineSignal(QString)),insertToDBAdress,SLOT(insertAdressQuery(QString)));
+    connect(this,SIGNAL(queryToSQLEngineSignal(QString)),insertToDBAddress,SLOT(insertAddressQuery(QString)));
 
-    connect(insertToDBAdress,SIGNAL(adressAlreadyExistsSignal(QString))
+    connect(insertToDBAddress,SIGNAL(addressAlreadyExistsSignal(QString))
             ,sqlQueryStatus,SLOT(setText(QString)));
-    connect(insertToDBAdress,SIGNAL(adressAddedSignal(QString))
+    connect(insertToDBAddress,SIGNAL(addressAddedSignal(QString))
             ,sqlQueryStatus,SLOT(setText(QString)));
 
     setLayout(mainLayout);
@@ -51,13 +48,13 @@ void NewKladovkaMenu::backToMainMenuSlot(){
 }
 
 void NewKladovkaMenu::becomeStringFromLineEdit(QString txt){
-    adressFromLabel = txt;
+    addressFromLabel = txt;
 }
 
 void NewKladovkaMenu::sendingSignalToSQLEngineSlot(){
-    if(adressFromLabel=="")
+    if(addressFromLabel=="")
         return;
 
-    emit queryToSQLEngineSignal(adressFromLabel);
+    emit queryToSQLEngineSignal(addressFromLabel);
 
 }

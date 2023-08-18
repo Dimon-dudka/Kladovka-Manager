@@ -17,15 +17,15 @@ class NewKladovkaMenu : public QWidget
 
 private:
 
-    SQLEngine *insertToDBAdress;
+    SQLEngine *insertToDBAddress;
 
-    QPushButton *backToMainMenuButton,*pushTheAdressToSQLButton;
+    QPushButton *backToMainMenuButton,*pushTheAddressToSQLButton;
     QVBoxLayout *mainLayout;
     QHBoxLayout *buttonsLayout;
-    QLineEdit *adressEditingLine;
+    QLineEdit *addressEditingLine;
     QLabel *userInfoLabel,*sqlQueryStatus;
 
-    QString adressFromLabel;
+    QString addressFromLabel;
 
 public:
     NewKladovkaMenu(SQLEngine *test,QWidget * parrent= 0);

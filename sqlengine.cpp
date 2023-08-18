@@ -22,7 +22,7 @@ void SQLEngine::buildConnectionAndDB(){
     }
     str = "CREATE TABLE IF NOT EXISTS allInfoKladovki("
                   "id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                  "adress TEXT, "
+                  "address TEXT, "
                   "reck INTEGER, "
                   "shelf INTEGER, "
                   "think TEXT "
@@ -39,7 +39,7 @@ void SQLEngine::buildConnectionAndDB(){
 
     //Making connection for DB with adresses
 
-    alldb.setDatabaseName("C:/Users/D/Documents/Kladovka/KladovkaProject/adressKladovki.sqlite");
+    alldb.setDatabaseName("C:/Users/D/Documents/Kladovka/KladovkaProject/addressKladovki.sqlite");
 
     if(!alldb.open()){
         emit errorConnectionSignal("Data Base Error!");
@@ -49,9 +49,9 @@ void SQLEngine::buildConnectionAndDB(){
         qDebug()<<"Succes";
     }
 
-    str = "CREATE TABLE IF NOT EXISTS adressKladovki("
+    str = "CREATE TABLE IF NOT EXISTS addressKladovki("
           "id INTEGER PRIMARY KEY AUTOINCREMENT, "
-          "adress TEXT UNIQUE"
+          "address TEXT UNIQUE"
           ");";
 
     QSqlQuery querySecond;
@@ -68,9 +68,9 @@ void SQLEngine::buildConnectionAndDB(){
 
 }
 
-void SQLEngine::insertAdressQuery(QString queryText){
+void SQLEngine::insertAddressQuery(QString queryText){
 
-    alldb.setDatabaseName("C:/Users/D/Documents/Kladovka/KladovkaProject/adressKladovki.sqlite");
+    alldb.setDatabaseName("C:/Users/D/Documents/Kladovka/KladovkaProject/addressKladovki.sqlite");
 
     if(!alldb.open()){
         qDebug()<<"Fail insertAdressQuery!";
@@ -81,16 +81,16 @@ void SQLEngine::insertAdressQuery(QString queryText){
         qDebug()<<"Succes open insertAdressQuery";
     }
 
-    QString str = "INSERT INTO adressKladovki( adress ) VALUES ( '"+queryText+"' );";
+    QString str = "INSERT INTO addressKladovki( address ) VALUES ( '"+queryText+"' );";
 
     QSqlQuery query;
     if(!query.exec(str)){
-        emit adressAlreadyExistsSignal("Adress Already Exists");
-        qDebug()<<"Somethink wrong with the query in <insertAdressQuery>!";
+        emit addressAlreadyExistsSignal("Address Already Exists");
+        qDebug()<<"Somethink wrong with the query in <insertAddressQuery>!";
         //return;
     }
     else{
-        emit adressAddedSignal("Adress added");
+        emit addressAddedSignal("Address added");
         qDebug()<<"Succes";
     }
 
