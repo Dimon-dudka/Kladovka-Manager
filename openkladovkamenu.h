@@ -27,8 +27,15 @@ private:
     QTreeWidget *treeView;
     QTreeWidgetItem *treeItem;
 
+
+
 public:
     OpenKladovkaMenu(SQLEngine *connectParameter,QWidget* parrent=0);
+
+public slots:
+
+    //void updateOfTreeWidget();
+    void updateOfAddressesList();
 
 private slots:
 

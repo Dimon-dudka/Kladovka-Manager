@@ -19,7 +19,11 @@ WidgetManager::WidgetManager(QStackedWidget * parrent):QStackedWidget(parrent)
     connect(mainMenuWidget,SIGNAL(newKladovkaSignal()),this,SLOT(setCurrentNewKladovkaWidget()));
     connect(newKladovkaMenuWidget,SIGNAL(backToMainMenuSignal()),this,SLOT(setCurrentMainMenuWidget()));
     connect(mainMenuWidget,SIGNAL(openExistsKladovkaSignal()),this,SLOT(setCurrentOpenKladovkaWidget()));
+
     connect(openKladovkaWidget,SIGNAL(backToMainMenuSignal()),this,SLOT(setCurrentMainMenuWidget()));
+
+    connect(mainMenuWidget,SIGNAL(openExistsKladovkaSignal())
+            ,openKladovkaWidget,SLOT(updateOfAddressesList()));
 
     setCurrentWidget(mainMenuWidget);
 

@@ -19,25 +19,8 @@ OpenKladovkaMenu::OpenKladovkaMenu(SQLEngine *connectParameter,QWidget* parrent)
     treeView->resize(200,100);
     //treeView->setSelectionBehavior(QAbstractItemView::SelectItems);
 
-    QString queryText = "SELECT address FROM addressKladovki ;";
-    QString tmpAddress = "";
-
-    if(!connectionDB->query->exec(queryText)){
-        qDebug()<<"Fail with query in openkladovkamenu.cpp\n";
-    }
-
     treeItem = new QTreeWidgetItem(treeView);
-    QSqlRecord rec = connectionDB->query->record();
-
-    while(connectionDB->query->next()){
-        tmpAddress = connectionDB->query->value(rec.indexOf("address")).toString();
-        //qDebug()<<tmpAddress;
-
-        treeItem = new QTreeWidgetItem(treeView);
-        treeItem->setText(0,tmpAddress);
-    }
-
-    connectionDB->query->clear();
+    updateOfAddressesList();
 
     menuLayout = new QVBoxLayout;
     menuLayout->addWidget(someInfoLabel);
@@ -50,6 +33,30 @@ OpenKladovkaMenu::OpenKladovkaMenu(SQLEngine *connectParameter,QWidget* parrent)
 
 }
 
+void OpenKladovkaMenu::updateOfAddressesList(){
+    QString queryText = "SELECT address FROM addressKladovki ;";
+    QString tmpAddress = "";
+
+    if(!connectionDB->query->exec(queryText)){
+        qDebug()<<"Fail with query in openkladovkamenu.cpp\n";
+    }
+
+    //treeItem = new QTreeWidgetItem(treeView);
+    QSqlRecord rec = connectionDB->query->record();
+    treeView->clear();
+
+    while(connectionDB->query->next()){
+        tmpAddress = connectionDB->query->value(rec.indexOf("address")).toString();
+        //qDebug()<<tmpAddress;
+
+        treeItem = new QTreeWidgetItem(treeView);
+        treeItem->setText(0,tmpAddress);
+    }
+
+    connectionDB->query->clear();
+}
+
 void OpenKladovkaMenu::sendingbackToMainMenuSlot(){
     emit backToMainMenuSignal();
 }
+
