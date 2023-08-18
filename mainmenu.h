@@ -28,7 +28,7 @@ private:
 
 public:
 
-    MainMenu(QWidget *parrent=0);
+    MainMenu(SQLEngine *test,QWidget *parrent=0);
 
 
 private slots:

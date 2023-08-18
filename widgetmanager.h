@@ -13,11 +13,15 @@
 #include "mainmenu.h"
 #include "newkladovkamenu.h"
 
+#include "sqlengine.h"
+
 class WidgetManager : public QStackedWidget
 {
     Q_OBJECT
 
 private:
+    SQLEngine *test;
+
 
     MainMenu *mainMenuWidget;
     NewKladovkaMenu *newKladovkaMenuWidget;

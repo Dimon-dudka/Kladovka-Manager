@@ -1,9 +1,9 @@
 
 #include "newkladovkamenu.h"
 
-NewKladovkaMenu::NewKladovkaMenu(QWidget * parrent):QWidget(parrent)
+NewKladovkaMenu::NewKladovkaMenu(SQLEngine *test,QWidget * parrent):QWidget(parrent),insertToDBAdress(test)
 {
-    insertToDBAdress = new SQLEngine;
+    //insertToDBAdress = new SQLEngine;
 
     sqlQueryStatus = new QLabel("");
     sqlQueryStatus->setAlignment(Qt::AlignCenter);

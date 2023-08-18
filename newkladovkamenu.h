@@ -28,7 +28,7 @@ private:
     QString adressFromLabel;
 
 public:
-    NewKladovkaMenu(QWidget * parrent= 0);
+    NewKladovkaMenu(SQLEngine *test,QWidget * parrent= 0);
 
 private slots:
 

@@ -2,13 +2,14 @@
 
 WidgetManager::WidgetManager(QStackedWidget * parrent):QStackedWidget(parrent)
 {
+    test= new SQLEngine;
 
     setWindowTitle("Kladovka Manager v 0.1");
 
     setMinimumSize(200,150);
 
-    mainMenuWidget = new MainMenu;
-    newKladovkaMenuWidget = new NewKladovkaMenu;
+    mainMenuWidget = new MainMenu(test);
+    newKladovkaMenuWidget = new NewKladovkaMenu(test);
 
     addWidget(mainMenuWidget);
     addWidget(newKladovkaMenuWidget);

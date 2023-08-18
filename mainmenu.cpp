@@ -1,10 +1,11 @@
 
 #include "mainmenu.h"
 
-MainMenu::MainMenu(QWidget *parrent) : QWidget(parrent)
+MainMenu::MainMenu(SQLEngine *test,QWidget *parrent) : QWidget(parrent),DBOpenProof(test)
 {
 
-    DBOpenProof = new SQLEngine;
+    //DBOpenProof = test;
+
     errorLabel = new QLabel("");
     errorLabel->setAlignment(Qt::AlignCenter);
     connect(DBOpenProof,SIGNAL(errorConnectionSignal(QString)),this,SLOT(changeLabelAfterError(QString)));
