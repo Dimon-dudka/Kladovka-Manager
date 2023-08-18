@@ -22,6 +22,8 @@ public:
     //adressDB is only for storages adresses
     //QSqlDatabase adressesDB;
 
+    QSqlQuery *query;
+
     SQLEngine(QObject *parrent=0);
     void buildConnectionAndDB();
 

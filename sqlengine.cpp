@@ -3,6 +3,7 @@
 SQLEngine::SQLEngine(QObject *parrent): QObject(parrent)
 {
     alldb = QSqlDatabase::addDatabase("QSQLITE");
+    query = new QSqlQuery;
 }
 
 void SQLEngine::buildConnectionAndDB(){
@@ -27,15 +28,15 @@ void SQLEngine::buildConnectionAndDB(){
                   "shelf INTEGER, "
                   "think TEXT "
                   ");";
-    QSqlQuery query;
-    if(!query.exec(str)){
+
+    if(!query->exec(str)){
         emit errorConnectionSignal("Data Base Query Error 1!");
         return;
     }
     else{
         qDebug()<<"Succes";
     }
-    query.clear();
+    query->clear();
 
     //Making connection for DB with adresses
 
@@ -54,8 +55,8 @@ void SQLEngine::buildConnectionAndDB(){
           "address TEXT UNIQUE"
           ");";
 
-    QSqlQuery querySecond;
-    if(!querySecond.exec(str)){
+    //QSqlQuery querySecond;
+    if(!query->exec(str)){
         emit errorConnectionSignal("Data Base Query Error 2!");
         return;
     }
@@ -63,8 +64,8 @@ void SQLEngine::buildConnectionAndDB(){
         qDebug()<<"Succes";
     }
 
-    querySecond.clear();
-    alldb.close();
+    query->clear();
+    //alldb.close();
 
 }
 
@@ -83,8 +84,8 @@ void SQLEngine::insertAddressQuery(QString queryText){
 
     QString str = "INSERT INTO addressKladovki( address ) VALUES ( '"+queryText+"' );";
 
-    QSqlQuery query;
-    if(!query.exec(str)){
+    //QSqlQuery query;
+    if(!query->exec(str)){
         emit addressAlreadyExistsSignal("Address Already Exists");
         qDebug()<<"Somethink wrong with the query in <insertAddressQuery>!";
         //return;
@@ -94,7 +95,7 @@ void SQLEngine::insertAddressQuery(QString queryText){
         qDebug()<<"Succes";
     }
 
-    query.clear();
-    alldb.close();
+    query->clear();
+    //alldb.close();
 
 }

@@ -12,6 +12,7 @@
 //  Derived from QWidget widgets
 #include "mainmenu.h"
 #include "newkladovkamenu.h"
+#include "openkladovkamenu.h"
 
 #include "sqlengine.h"
 
@@ -25,6 +26,7 @@ private:
 
     MainMenu *mainMenuWidget;
     NewKladovkaMenu *newKladovkaMenuWidget;
+    OpenKladovkaMenu *openKladovkaWidget;
 
 
 public:
@@ -38,7 +40,7 @@ private slots:
 
     void setCurrentMainMenuWidget();
     void setCurrentNewKladovkaWidget();
-    //void setCurrentOpenKladovkaWidget();
+    void setCurrentOpenKladovkaWidget();
 
 signals:
 

@@ -13,12 +13,14 @@ SOURCES += \
     main.cpp \
     mainmenu.cpp \
     newkladovkamenu.cpp \
+    openkladovkamenu.cpp \
     sqlengine.cpp \
     widgetmanager.cpp
 
 HEADERS += \
     mainmenu.h \
     newkladovkamenu.h \
+    openkladovkamenu.h \
     sqlengine.h \
     widgetmanager.h
 
