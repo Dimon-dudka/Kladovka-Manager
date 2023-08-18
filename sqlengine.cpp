@@ -2,7 +2,7 @@
 
 SQLEngine::SQLEngine(QObject *parrent): QObject(parrent)
 {
-
+    alldb = QSqlDatabase::addDatabase("QSQLITE");
 }
 
 void SQLEngine::buildConnectionAndDB(){
@@ -11,9 +11,8 @@ void SQLEngine::buildConnectionAndDB(){
 
     //  Making connection and DB if not exists for DB with whole information
 
-    alldb = QSqlDatabase::addDatabase("QSQLITE");
     alldb.setDatabaseName("C:/Users/D/Documents/Kladovka/KladovkaProject/allInfoKladovki.sqlite");
-
+    //{
     if(!alldb.open()){
         emit errorConnectionSignal("Data Base Error!");
         return;
@@ -37,11 +36,15 @@ void SQLEngine::buildConnectionAndDB(){
         qDebug()<<"Succes";
     }
     query.clear();
-    alldb.close();
-
+    //alldb.close();
+    //}
+    //alldb=QSqlDatabase();
+    //QSqlDatabase::removeDatabase("allInfoKladovki");
 
     //Making connection for DB with adresses
-    alldb = QSqlDatabase::addDatabase("QSQLITE");
+    //{
+    //alldb = QSqlDatabase::addDatabase("QSQLITE");
+    //alldb=QSqlDatabase::database("QSQLITE");
     alldb.setDatabaseName("C:/Users/D/Documents/Kladovka/KladovkaProject/adressKladovki.sqlite");
 
     if(!alldb.open()){
@@ -68,4 +71,10 @@ void SQLEngine::buildConnectionAndDB(){
 
     querySecond.clear();
     alldb.close();
+   // }
+
 }
+
+//void SQLEngine::insertAdressQuery(QString queryText){
+
+//}

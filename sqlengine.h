@@ -12,17 +12,20 @@ class SQLEngine : public QObject
 
 private:
 
-    void createConnection();
+    QSqlDatabase alldb;
+    //QSqlQuery query;
+    //QString textOfQueries;
 
 public:
     //allDB connection is for the DB with all information
-    QSqlDatabase alldb;
+
     //adressDB is only for storages adresses
     //QSqlDatabase adressesDB;
 
     SQLEngine(QObject *parrent=0);
     void buildConnectionAndDB();
 
+    void insertAdressQuery(QString queryText);
 
 
 signals:
