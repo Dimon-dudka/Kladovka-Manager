@@ -31,6 +31,10 @@ public slots:
 
     void deleteTheKladovka(QString queryText);
 
+    void insertIntoAllSlot(QString address,QString reck,QString shelf,QString thing);
+
+    void deleteThingAllSlot(QString address,QString reck,QString shelf,QString thing);
+
 signals:
 
     void errorConnectionSignal(QString text);
@@ -38,5 +42,9 @@ signals:
     //  Signals for <add new Kladovka> widget
     void addressAlreadyExistsSignal(QString text);
     void addressAddedSignal(QString text);
+
+    //Signals for <insert into all>
+    void insertInfoSignal(QString text);
+
 
 };

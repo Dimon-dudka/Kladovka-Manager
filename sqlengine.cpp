@@ -26,7 +26,7 @@ void SQLEngine::buildConnectionAndDB(){
                   "address TEXT, "
                   "reck INTEGER, "
                   "shelf INTEGER, "
-                  "think TEXT "
+                  "thing TEXT "
                   ");";
 
     if(!query->exec(str)){
@@ -96,17 +96,23 @@ void SQLEngine::insertAddressQuery(QString queryText){
     }
 
     query->clear();
-    //alldb.close();
 
 }
 
 void SQLEngine::changeConnectionToALLINFO(){
     alldb.setDatabaseName("C:/Users/D/Documents/Kladovka/KladovkaProject/allInfoKladovki.sqlite");
+    if(!alldb.open()){
+        qDebug()<<"Fail with change the DB";
+    }
     query->clear();
+
 }
 
 void SQLEngine::changeConnectionToADDRESSES(){
     alldb.setDatabaseName("C:/Users/D/Documents/Kladovka/KladovkaProject/addressKladovki.sqlite");
+    if(!alldb.open()){
+        qDebug()<<"Fail with change the DB";
+    }
     query->clear();
 }
 
@@ -117,6 +123,39 @@ void SQLEngine::deleteTheKladovka(QString queryText){
     }
     else{
         qDebug()<<"Succes";
+    }
+    query->clear();
+}
+
+void SQLEngine::insertIntoAllSlot(QString address,QString reck,QString shelf,QString thing){
+
+    changeConnectionToALLINFO();
+
+    QString queryTxt = "INSERT INTO allInfoKladovki (address,reck,shelf,thing) "
+                       "VALUES ( '"+address+"' , '"+reck+"' , '"+shelf+"' , '"+thing+"' );";
+    if(!query->exec(queryTxt)){
+        qDebug()<<"Fail SQL ENGINE <insertIntoALLSlot> Fail";
+        emit insertInfoSignal("Insert error!");
+    }else{
+        qDebug()<<"Insert to ALL - OK";
+        emit insertInfoSignal("All done");
+    }
+    query->clear();
+
+}
+
+void SQLEngine::deleteThingAllSlot(QString address,QString reck,QString shelf,QString thing){
+
+    changeConnectionToALLINFO();
+
+    QString queryTxt = "DELETE FROM allInfoKladovki WHERE "
+      " address = '"+address+"' AND reck = '"+reck+"' AND shelf = '"+shelf+"' AND thing = '"+thing+"';";
+    if(!query->exec(queryTxt)){
+        qDebug()<<"Fail SQL ENGINE <deleteThingALLSlot> Fail";
+        emit insertInfoSignal("Deleting error!");
+    }else{
+        qDebug()<<"Insert to ALL - OK";
+        emit insertInfoSignal("Deleting done");
     }
     query->clear();
 }

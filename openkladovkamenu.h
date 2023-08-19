@@ -47,7 +47,11 @@ private slots:
 
     void deletingButtonSlot();
 
+    void proofAddressAndSendSlot();
+
 signals:
     void backToMainMenuSignal();
+    void sendTheAddressSignal(QString address);
+    void nextMenuSignal();
 
 };

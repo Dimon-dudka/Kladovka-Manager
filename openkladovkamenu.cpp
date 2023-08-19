@@ -35,6 +35,8 @@ OpenKladovkaMenu::OpenKladovkaMenu(SQLEngine *connectParameter,QWidget* parrent)
     connect(backMainMenuButton,SIGNAL(clicked()),this,SLOT(sendingbackToMainMenuSlot()));
     connect(deleteKladovkaButton,SIGNAL(clicked()),this,SLOT(deletingButtonSlot()));
 
+    connect(acceptChoiseAndNextButton,SIGNAL(clicked()),this,SLOT(proofAddressAndSendSlot()));
+
     connect(treeView,SIGNAL(itemClicked(QTreeWidgetItem*,int))
             ,this,SLOT(userAddressChoiseSlot(QTreeWidgetItem*,int)));
 
@@ -60,6 +62,7 @@ void OpenKladovkaMenu::deletingButtonSlot(){
 
     connectionDB->changeConnectionToADDRESSES();
     connectionDB->deleteTheKladovka(addressTxt);
+
     updateOfAddressesList();
 
 }
@@ -96,3 +99,8 @@ void OpenKladovkaMenu::sendingbackToMainMenuSlot(){
     emit backToMainMenuSignal();
 }
 
+void OpenKladovkaMenu::proofAddressAndSendSlot(){
+    if(addressTxt.isEmpty()||addressTxt=="")return;
+    emit sendTheAddressSignal(addressTxt);
+    emit nextMenuSignal();
+}

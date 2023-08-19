@@ -10,6 +10,8 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    eventswithkladovkamenu.cpp \
+    insertdeletemenu.cpp \
     main.cpp \
     mainmenu.cpp \
     newkladovkamenu.cpp \
@@ -18,6 +20,8 @@ SOURCES += \
     widgetmanager.cpp
 
 HEADERS += \
+    eventswithkladovkamenu.h \
+    insertdeletemenu.h \
     mainmenu.h \
     newkladovkamenu.h \
     openkladovkamenu.h \

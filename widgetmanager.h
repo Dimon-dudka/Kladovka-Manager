@@ -13,7 +13,10 @@
 #include "mainmenu.h"
 #include "newkladovkamenu.h"
 #include "openkladovkamenu.h"
+#include "eventswithkladovkamenu.h"
+#include "insertdeletemenu.h"
 
+//  SQLite Engine
 #include "sqlengine.h"
 
 class WidgetManager : public QStackedWidget
@@ -27,7 +30,8 @@ private:
     MainMenu *mainMenuWidget;
     NewKladovkaMenu *newKladovkaMenuWidget;
     OpenKladovkaMenu *openKladovkaWidget;
-
+    EventsWithKladovkaMenu *eventKladovkaWidget;
+    InsertDeleteMenu *insertDeleteMenuWidget;
 
 public:
 
@@ -36,11 +40,15 @@ public:
 
 public slots:
 
+
+
 private slots:
 
     void setCurrentMainMenuWidget();
     void setCurrentNewKladovkaWidget();
     void setCurrentOpenKladovkaWidget();
+    void setCurrentEventKladovkaMenuWidget();
+    void setCurrentInsertDeleteMenuWidget();
 
 signals:
 
