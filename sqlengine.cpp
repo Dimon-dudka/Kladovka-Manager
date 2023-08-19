@@ -109,3 +109,14 @@ void SQLEngine::changeConnectionToADDRESSES(){
     alldb.setDatabaseName("C:/Users/D/Documents/Kladovka/KladovkaProject/addressKladovki.sqlite");
     query->clear();
 }
+
+void SQLEngine::deleteTheKladovka(QString queryText){
+    QString str = "DELETE FROM addressKladovki WHERE address = '"+queryText+"';";
+    if(!query->exec(str)){
+        qDebug()<<"Somethink wrong with the query in <deleteTheKladovka>!";
+    }
+    else{
+        qDebug()<<"Succes";
+    }
+    query->clear();
+}

@@ -7,6 +7,7 @@
 #include <QLabel>
 #include <QBoxLayout>
 #include <QString>
+#include <QMessageBox>
 //  Describing openKladovkaMenu Widget
 
 #include "sqlengine.h"
@@ -22,11 +23,12 @@ private:
     QLabel *someInfoLabel;
     QVBoxLayout *menuLayout;
     QHBoxLayout *buttonsLayout;
-    QPushButton *backMainMenuButton,*acceptChoiseAndNextButton;
+    QPushButton *backMainMenuButton,*acceptChoiseAndNextButton,*deleteKladovkaButton;
 
     QTreeWidget *treeView;
     QTreeWidgetItem *treeItem;
 
+    QString addressTxt;
 
 
 public:
@@ -40,6 +42,10 @@ public slots:
 private slots:
 
     void sendingbackToMainMenuSlot();
+
+    void userAddressChoiseSlot(QTreeWidgetItem* test,int number);
+
+    void deletingButtonSlot();
 
 signals:
     void backToMainMenuSignal();
