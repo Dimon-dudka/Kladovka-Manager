@@ -34,6 +34,9 @@ OpenKladovkaMenu::OpenKladovkaMenu(SQLEngine *connectParameter,QWidget* parrent)
 }
 
 void OpenKladovkaMenu::updateOfAddressesList(){
+
+    connectionDB->changeConnectionToADDRESSES();
+
     QString queryText = "SELECT address FROM addressKladovki ;";
     QString tmpAddress = "";
 

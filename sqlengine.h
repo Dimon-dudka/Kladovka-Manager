@@ -27,6 +27,9 @@ public:
     SQLEngine(QObject *parrent=0);
     void buildConnectionAndDB();
 
+    void changeConnectionToALLINFO();
+    void changeConnectionToADDRESSES();
+
 public slots:
     void insertAddressQuery(QString queryText);
 

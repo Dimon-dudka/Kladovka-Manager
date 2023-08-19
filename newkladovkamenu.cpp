@@ -1,9 +1,10 @@
 
 #include "newkladovkamenu.h"
 
-NewKladovkaMenu::NewKladovkaMenu(SQLEngine *test,QWidget * parrent):QWidget(parrent),insertToDBAddress(test)
+NewKladovkaMenu::NewKladovkaMenu(SQLEngine *test,QWidget * parrent)
+    :QWidget(parrent),insertToDBAddress(test)
 {
-    //insertToDBAddress = new SQLEngine;
+    insertToDBAddress->changeConnectionToADDRESSES();
 
     sqlQueryStatus = new QLabel("");
     sqlQueryStatus->setAlignment(Qt::AlignCenter);
@@ -52,6 +53,9 @@ void NewKladovkaMenu::becomeStringFromLineEdit(QString txt){
 }
 
 void NewKladovkaMenu::sendingSignalToSQLEngineSlot(){
+
+    insertToDBAddress->changeConnectionToADDRESSES();
+
     if(addressFromLabel=="")
         return;
 

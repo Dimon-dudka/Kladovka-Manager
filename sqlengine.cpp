@@ -99,3 +99,13 @@ void SQLEngine::insertAddressQuery(QString queryText){
     //alldb.close();
 
 }
+
+void SQLEngine::changeConnectionToALLINFO(){
+    alldb.setDatabaseName("C:/Users/D/Documents/Kladovka/KladovkaProject/allInfoKladovki.sqlite");
+    query->clear();
+}
+
+void SQLEngine::changeConnectionToADDRESSES(){
+    alldb.setDatabaseName("C:/Users/D/Documents/Kladovka/KladovkaProject/addressKladovki.sqlite");
+    query->clear();
+}
