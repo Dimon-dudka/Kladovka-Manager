@@ -117,7 +117,21 @@ void SQLEngine::changeConnectionToADDRESSES(){
 }
 
 void SQLEngine::deleteTheKladovka(QString queryText){
+
+    changeConnectionToADDRESSES();
+
     QString str = "DELETE FROM addressKladovki WHERE address = '"+queryText+"';";
+    if(!query->exec(str)){
+        qDebug()<<"Somethink wrong with the query in <deleteTheKladovka>!";
+    }
+    else{
+        qDebug()<<"Succes";
+    }
+    query->clear();
+
+    changeConnectionToALLINFO();
+
+    str = "DELETE FROM allInfoKladovki WHERE address = '"+queryText+"';";
     if(!query->exec(str)){
         qDebug()<<"Somethink wrong with the query in <deleteTheKladovka>!";
     }
