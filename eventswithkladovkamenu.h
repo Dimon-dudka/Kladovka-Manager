@@ -32,10 +32,13 @@ private slots:
 
     void sendingBackSignal();
     void insertDeleteWidgetOpen();
+    void sendingPrintAllSlot();
 
 signals:
 
     void backSignal();
+    void printAllSignal();
+
     void insertDeleteWidgetOpenSignal();
 
 };

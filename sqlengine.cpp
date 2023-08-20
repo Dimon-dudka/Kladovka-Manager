@@ -144,18 +144,36 @@ void SQLEngine::insertIntoAllSlot(QString address,QString reck,QString shelf,QSt
 
 }
 
-void SQLEngine::deleteThingAllSlot(QString address,QString reck,QString shelf,QString thing){
+void SQLEngine::deleteThingAllSlot( QString address,QString reck,QString shelf,QString thing){
 
     changeConnectionToALLINFO();
 
     QString queryTxt = "DELETE FROM allInfoKladovki WHERE "
-      " address = '"+address+"' AND reck = '"+reck+"' AND shelf = '"+shelf+"' AND thing = '"+thing+"';";
+        " address = '"+address+"' AND reck = '"+reck+"' AND shelf = '"+shelf+"' AND thing = '"+thing+"';";
     if(!query->exec(queryTxt)){
         qDebug()<<"Fail SQL ENGINE <deleteThingALLSlot> Fail";
         emit insertInfoSignal("Deleting error!");
     }else{
-        qDebug()<<"Insert to ALL - OK";
+        qDebug()<<"Delete from ALL - OK";
         emit insertInfoSignal("Deleting done");
     }
+
+
     query->clear();
+}
+
+void SQLEngine::deleteThingAllByIDSlot(QString id){
+    if(id=="-1")return;
+
+    changeConnectionToALLINFO();
+
+    QString queryTxt = "DELETE FROM allInfoKladovki WHERE "
+                       " id = "+id+" ;";
+    if(!query->exec(queryTxt)){
+        qDebug()<<"Fail SQL ENGINE <deleteThingALLByIDSlot> Fail";
+        //emit insertInfoSignal("Deleting error!");
+    }else{
+        qDebug()<<"Delete from ALL - OK";
+        emit updataingTreeSignal();
+    }
 }

@@ -97,6 +97,12 @@ void InsertDeleteMenu::sendingDeletingSignalSlot(){
         return;
     }
 
+    int n = QMessageBox::warning(0,"Warning","Delete option will delete "
+                                               "all things\nwith same name on this shel\n"
+                                               "Do you want to delete choisen thing?",
+                                 QMessageBox::Yes|QMessageBox::No,QMessageBox::No);
+    if(n==QMessageBox::No)return;
+
     dataBaseconnection->deleteThingAllSlot(addressString,reckString,shelfString,thingString);
 }
 

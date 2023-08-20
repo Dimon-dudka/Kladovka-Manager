@@ -35,6 +35,8 @@ public slots:
 
     void deleteThingAllSlot(QString address,QString reck,QString shelf,QString thing);
 
+    void deleteThingAllByIDSlot(QString id);
+
 signals:
 
     void errorConnectionSignal(QString text);
@@ -46,5 +48,6 @@ signals:
     //Signals for <insert into all>
     void insertInfoSignal(QString text);
 
+    void updataingTreeSignal();
 
 };

@@ -6,6 +6,7 @@
 #include <QLabel>
 #include <QString>
 #include <QLineEdit>
+#include <QMessageBox>
 
 #include "sqlengine.h"
 

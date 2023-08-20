@@ -13,12 +13,14 @@ WidgetManager::WidgetManager(QStackedWidget * parrent):QStackedWidget(parrent)
     openKladovkaWidget = new OpenKladovkaMenu(test);
     eventKladovkaWidget = new EventsWithKladovkaMenu;
     insertDeleteMenuWidget = new InsertDeleteMenu(test);
+    allThinksMenuWidget = new AllThingsMenu(test);
 
     addWidget(mainMenuWidget);
     addWidget(newKladovkaMenuWidget);
     addWidget(openKladovkaWidget);
     addWidget(eventKladovkaWidget);
     addWidget(insertDeleteMenuWidget);
+    addWidget(allThinksMenuWidget);
 
     connect(mainMenuWidget,SIGNAL(newKladovkaSignal()),this,SLOT(setCurrentNewKladovkaWidget()));
     connect(newKladovkaMenuWidget,SIGNAL(backToMainMenuSignal()),this,SLOT(setCurrentMainMenuWidget()));
@@ -42,6 +44,12 @@ WidgetManager::WidgetManager(QStackedWidget * parrent):QStackedWidget(parrent)
             ,insertDeleteMenuWidget,SLOT(becomeAddressSlot(QString)));
 
     connect(insertDeleteMenuWidget,SIGNAL(backSignal()),this,SLOT(setCurrentEventKladovkaMenuWidget()));
+
+    connect(eventKladovkaWidget,SIGNAL(printAllSignal()),this,SLOT(setCurrentAllThingsMenuWidget()));
+    connect(eventKladovkaWidget,SIGNAL(printAllSignal()),allThinksMenuWidget,SLOT(updateStuffTree()));
+
+    connect(allThinksMenuWidget,SIGNAL(backSignal()),this,SLOT(setCurrentEventKladovkaMenuWidget()));
+    connect(openKladovkaWidget,SIGNAL(sendTheAddressSignal(QString)),allThinksMenuWidget,SLOT(becomeAddressSlot(QString)));
 
     setCurrentWidget(mainMenuWidget);
 
@@ -67,4 +75,8 @@ void WidgetManager::setCurrentEventKladovkaMenuWidget(){
 
 void WidgetManager::setCurrentInsertDeleteMenuWidget(){
     setCurrentWidget(insertDeleteMenuWidget);
+}
+
+void WidgetManager::setCurrentAllThingsMenuWidget(){
+    setCurrentWidget(allThinksMenuWidget);
 }

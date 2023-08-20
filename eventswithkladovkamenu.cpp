@@ -24,6 +24,7 @@ EventsWithKladovkaMenu::EventsWithKladovkaMenu(QWidget *parrent):QWidget(parrent
 
     connect(backButton,SIGNAL(clicked()),this,SLOT(sendingBackSignal()));
     connect(insertButton,SIGNAL(clicked()),this,SLOT(insertDeleteWidgetOpen()));
+    connect(printAllButton,SIGNAL(clicked()),this,SLOT(sendingPrintAllSlot()));
 
     setLayout(eventsMenuLayout);
 
@@ -41,4 +42,8 @@ void EventsWithKladovkaMenu::sendingBackSignal(){
 
 void EventsWithKladovkaMenu::insertDeleteWidgetOpen(){
     emit insertDeleteWidgetOpenSignal();
+}
+
+void EventsWithKladovkaMenu::sendingPrintAllSlot(){
+    emit printAllSignal();
 }

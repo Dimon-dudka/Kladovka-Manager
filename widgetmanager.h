@@ -15,6 +15,7 @@
 #include "openkladovkamenu.h"
 #include "eventswithkladovkamenu.h"
 #include "insertdeletemenu.h"
+#include "allthingsmenu.h"
 
 //  SQLite Engine
 #include "sqlengine.h"
@@ -32,6 +33,7 @@ private:
     OpenKladovkaMenu *openKladovkaWidget;
     EventsWithKladovkaMenu *eventKladovkaWidget;
     InsertDeleteMenu *insertDeleteMenuWidget;
+    AllThingsMenu *allThinksMenuWidget;
 
 public:
 
@@ -49,6 +51,7 @@ private slots:
     void setCurrentOpenKladovkaWidget();
     void setCurrentEventKladovkaMenuWidget();
     void setCurrentInsertDeleteMenuWidget();
+    void setCurrentAllThingsMenuWidget();
 
 signals:
 
