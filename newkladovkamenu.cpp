@@ -9,8 +9,17 @@ NewKladovkaMenu::NewKladovkaMenu(SQLEngine *test,QWidget * parrent)
     sqlQueryStatus = new QLabel("");
     sqlQueryStatus->setAlignment(Qt::AlignCenter);
 
+    QFont font=sqlQueryStatus->font();
+    font.setPointSize(10);
+    font.setBold(true);
+    sqlQueryStatus->setFont(font);
+
     userInfoLabel = new QLabel("Enter the kladovka address");
     userInfoLabel->setAlignment(Qt::AlignCenter);
+
+    font=userInfoLabel->font();
+    font.setPointSize(10);
+    userInfoLabel->setFont(font);
 
     addressEditingLine = new QLineEdit("");
 
@@ -27,14 +36,18 @@ NewKladovkaMenu::NewKladovkaMenu(SQLEngine *test,QWidget * parrent)
     mainLayout->addWidget(addressEditingLine);
     mainLayout->addLayout(buttonsLayout);
 
+    //Buttons connections
     connect(backToMainMenuButton,SIGNAL(clicked()),this,SLOT(backToMainMenuSlot()));
-    connect(addressEditingLine,SIGNAL(textChanged(QString)),this,SLOT(becomeStringFromLineEdit(QString)));
-
     connect(pushTheAddressToSQLButton,SIGNAL(clicked())
             ,this,SLOT(sendingSignalToSQLEngineSlot()));
 
-    connect(this,SIGNAL(queryToSQLEngineSignal(QString)),insertToDBAddress,SLOT(insertAddressQuery(QString)));
+    //Line edit connections
+    connect(addressEditingLine,SIGNAL(textChanged(QString))
+            ,this,SLOT(becomeStringFromLineEdit(QString)));
 
+    //SQL connections
+    connect(this,SIGNAL(queryToSQLEngineSignal(QString))
+            ,insertToDBAddress,SLOT(insertAddressQuery(QString)));
     connect(insertToDBAddress,SIGNAL(addressAlreadyExistsSignal(QString))
             ,sqlQueryStatus,SLOT(setText(QString)));
     connect(insertToDBAddress,SIGNAL(addressAddedSignal(QString))

@@ -18,6 +18,12 @@ InsertDeleteMenu::InsertDeleteMenu(SQLEngine *engine,QWidget *parrent)
     infoLabel = new QLabel("");
     infoLabel->setAlignment(Qt::AlignCenter);
 
+    QFont font=infoLabel->font();
+    font.setPointSize(10);
+    font.setBold(true);
+    infoLabel->setFont(font);
+
+
     reckLineEdit = new QLineEdit;
     shelfLineEdit = new QLineEdit;
     thingLineEdit = new QLineEdit;
@@ -26,51 +32,61 @@ InsertDeleteMenu::InsertDeleteMenu(SQLEngine *engine,QWidget *parrent)
     insertButton = new QPushButton("Insert Item");
     deleteButton = new QPushButton("Delete Item");
 
-    insertDeleteMenuLayout = new QGridLayout;
-    insertDeleteMenuLayout->setContentsMargins(5,5,5,5);
-    insertDeleteMenuLayout->setSpacing(5);
+
+    labelsLayout = new QBoxLayout(QBoxLayout::LeftToRight);
+    editLayout = new QBoxLayout(QBoxLayout::LeftToRight);
+    buttonsLayout = new QBoxLayout(QBoxLayout::LeftToRight);
 
 
-    //first line
-    insertDeleteMenuLayout->addWidget(infoLabel,0,1);
-    //second line
-    insertDeleteMenuLayout->addWidget(reckLabel,1,0);
-    insertDeleteMenuLayout->addWidget(shelfLabel,1,1);
-    insertDeleteMenuLayout->addWidget(thingLabel,1,2);
-    //trird line
-    insertDeleteMenuLayout->addWidget(reckLineEdit,2,0);
-    insertDeleteMenuLayout->addWidget(shelfLineEdit,2,1);
-    insertDeleteMenuLayout->addWidget(thingLineEdit,2,2);
-    //fourth line
-    insertDeleteMenuLayout->addWidget(backButton,3,0);
-    insertDeleteMenuLayout->addWidget(deleteButton,3,1);
-    insertDeleteMenuLayout->addWidget(insertButton,3,2);
 
+    labelsLayout->addWidget(reckLabel,1);
+    labelsLayout->addWidget(shelfLabel,1);
+    labelsLayout->addWidget(thingLabel,3);
+
+    editLayout->addWidget(reckLineEdit,1);
+    editLayout->addWidget(shelfLineEdit,1);
+    editLayout->addWidget(thingLineEdit,3);
+
+    buttonsLayout->addWidget(backButton,1);
+    buttonsLayout->addWidget(deleteButton,1);
+    buttonsLayout->addWidget(insertButton,1);
+
+    allLayout=new QVBoxLayout;
+    allLayout->setSpacing(10);
+
+    allLayout->addWidget(infoLabel);
+    allLayout->addStretch();
+    allLayout->addLayout(labelsLayout);
+    allLayout->addStretch();
+    allLayout->addLayout(editLayout);
+    allLayout->addStretch();
+    allLayout->addLayout(buttonsLayout);
+
+    //Buttons connections
     connect(backButton,SIGNAL(clicked()),this,SLOT(sendingBackSignalSlot()));
     connect(insertButton,SIGNAL(clicked()),this,SLOT(sendingInsertSignalSlot()));
     connect(deleteButton,SIGNAL(clicked()),this,SLOT(sendingDeletingSignalSlot()));
 
+    //Line edit connections
     connect(reckLineEdit,SIGNAL(textChanged(QString)),this,SLOT(reckLabelToStringSlot(QString)));
     connect(shelfLineEdit,SIGNAL(textChanged(QString)),this,SLOT(shelfLabelToStringSlot(QString)));
     connect(thingLineEdit,SIGNAL(textChanged(QString)),this,SLOT(thingLabelToStringSlot(QString)));
 
+    //SQL connections
     connect(dataBaseconnection,SIGNAL(insertInfoSignal(QString)),this,SLOT(becomeInfoLabelTextSlot(QString)));
 
-    setLayout(insertDeleteMenuLayout);
+    setLayout(allLayout);
 
 }
 
 void InsertDeleteMenu::reckLabelToStringSlot(QString text){
     reckString=text;
-    //qDebug()<<reckString;
 }
 void InsertDeleteMenu::shelfLabelToStringSlot(QString text){
     shelfString=text;
-    //qDebug()<<shelfString;
 }
 void InsertDeleteMenu::thingLabelToStringSlot(QString text){
     thingString=text;
-    //qDebug()<<thingString;
 }
 
 void InsertDeleteMenu::becomeAddressSlot(QString address){
@@ -83,17 +99,14 @@ void InsertDeleteMenu::sendingBackSignalSlot(){
 
 void InsertDeleteMenu::sendingInsertSignalSlot(){
     if(reckString.isEmpty()||shelfString.isEmpty()||thingString.isEmpty()){
-        qDebug()<<"Some line Edit is empty";
         return;
     }
 
     dataBaseconnection->insertIntoAllSlot(addressString,reckString,shelfString,thingString);
-
 }
 
 void InsertDeleteMenu::sendingDeletingSignalSlot(){
     if(reckString.isEmpty()||shelfString.isEmpty()||thingString.isEmpty()){
-        qDebug()<<"Some line Edit is empty";
         return;
     }
 

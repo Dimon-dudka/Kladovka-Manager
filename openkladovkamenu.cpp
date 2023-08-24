@@ -1,8 +1,9 @@
 #include "openkladovkamenu.h"
 
-OpenKladovkaMenu::OpenKladovkaMenu(SQLEngine *connectParameter,QWidget* parrent)
-    :QWidget(parrent),connectionDB(connectParameter)
+OpenKladovkaMenu::OpenKladovkaMenu(Logger *logParrent,SQLEngine *connectParameter,QWidget* parrent)
+    :QWidget(parrent),connectionDB(connectParameter),logging(logParrent)
 {
+
     addressTxt = "";
 
     someInfoLabel = new QLabel("Select kladovka address");
@@ -20,9 +21,7 @@ OpenKladovkaMenu::OpenKladovkaMenu(SQLEngine *connectParameter,QWidget* parrent)
     treeView = new QTreeWidget;
     treeView->setHeaderLabel("Addresses");
     treeView->setSortingEnabled(true);
-    //treeView->resize(100,10);
     treeView->resize(200,100);
-    //treeView->setSelectionBehavior(QAbstractItemView::SelectItems);
 
     treeItem = new QTreeWidgetItem(treeView);
     updateOfAddressesList();
@@ -32,11 +31,12 @@ OpenKladovkaMenu::OpenKladovkaMenu(SQLEngine *connectParameter,QWidget* parrent)
     menuLayout->addWidget(treeView);
     menuLayout->addLayout(buttonsLayout);
 
+    //Buttons connections
     connect(backMainMenuButton,SIGNAL(clicked()),this,SLOT(sendingbackToMainMenuSlot()));
     connect(deleteKladovkaButton,SIGNAL(clicked()),this,SLOT(deletingButtonSlot()));
-
     connect(acceptChoiseAndNextButton,SIGNAL(clicked()),this,SLOT(proofAddressAndSendSlot()));
 
+    //Tree widget connections
     connect(treeView,SIGNAL(itemClicked(QTreeWidgetItem*,int))
             ,this,SLOT(userAddressChoiseSlot(QTreeWidgetItem*,int)));
 
@@ -47,7 +47,6 @@ OpenKladovkaMenu::OpenKladovkaMenu(SQLEngine *connectParameter,QWidget* parrent)
 //Slot that become an user selected address in Tree widget
 void OpenKladovkaMenu::userAddressChoiseSlot(QTreeWidgetItem* test,int number){
     addressTxt=test->text(number);
-    //qDebug()<<addressTxt;
 }
 
 void OpenKladovkaMenu::deletingButtonSlot(){
@@ -76,16 +75,17 @@ void OpenKladovkaMenu::updateOfAddressesList(){
     QString tmpAddress = "";
 
     if(!connectionDB->query->exec(queryText)){
-        qDebug()<<"Fail with query in openkladovkamenu.cpp\n";
+        logging->messageHandler(Logger::WARNING
+                                ,"OpenKladovkaMenu"
+                                ,"Fail in request by updating addresses list");
+
     }
 
-    //treeItem = new QTreeWidgetItem(treeView);
     QSqlRecord rec = connectionDB->query->record();
     treeView->clear();
 
     while(connectionDB->query->next()){
         tmpAddress = connectionDB->query->value(rec.indexOf("address")).toString();
-        //qDebug()<<tmpAddress;
 
         treeItem = new QTreeWidgetItem(treeView);
         treeItem->setText(0,tmpAddress);

@@ -1,24 +1,20 @@
 
 #include "allthingsmenu.h"
 
-AllThingsMenu::AllThingsMenu(SQLEngine *connection,QWidget *parrent)
-    :QWidget(parrent),connectionDB(connection)
+AllThingsMenu::AllThingsMenu(Logger *logParrent,SQLEngine *connection,QWidget *parrent)
+    :QWidget(parrent),connectionDB(connection),logging(logParrent)
 {
+
     userInfoLabel = new QLabel("");
     userInfoLabel->setAlignment(Qt::AlignCenter);
-
-    //operationStatusLabel=new QLabel("");
-    //operationStatusLabel->setAlignment(Qt::AlignCenter);
 
     backButton = new QPushButton("Back");
     deleteButton = new QPushButton("Delete Item");
 
     treeView = new QTreeWidget;
-    treeView->setHeaderLabel("Items int this Kladovka");
+    treeView->setHeaderLabel("Items in this Kladovka");
     treeView->setSortingEnabled(true);
     treeView->resize(200,100);
-
-    //updateStuffTree();
 
     treeItem = new QTreeWidgetItem(treeView);
 
@@ -32,24 +28,26 @@ AllThingsMenu::AllThingsMenu(SQLEngine *connection,QWidget *parrent)
     AllThingsLayout->addLayout(buttonsLayout);
 
 
+    //Buttons connections
     connect(backButton,SIGNAL(clicked()),this,SLOT(sendingBackSlot()));
     connect(deleteButton,SIGNAL(clicked()),this,SLOT(sendingDeleteQuerySlot()));
 
-    connect(treeView,SIGNAL(itemClicked(QTreeWidgetItem*,int)),this,SLOT(userChoiseSlot(QTreeWidgetItem*,int)));
-
-    connect(this,SIGNAL(deleteSignal(QString)),connectionDB,SLOT(deleteThingAllByIDSlot(QString)));
+    //Tree widget connections
+    connect(treeView,SIGNAL(itemClicked(QTreeWidgetItem*,int))
+            ,this,SLOT(userChoiseSlot(QTreeWidgetItem*,int)));
     connect(connectionDB,SIGNAL(updataingTreeSignal()),this,SLOT(updateStuffTree()));
+
+    //SQL connections
+    connect(this,SIGNAL(deleteSignal(QString)),connectionDB,SLOT(deleteThingAllByIDSlot(QString)));
+
 
     setLayout(AllThingsLayout);
 
 }
 
 void AllThingsMenu::userChoiseSlot(QTreeWidgetItem* test,int number){
-    //addressTxt=test->text(number);
     number =3;
     idString = test->data(number,Qt::DisplayRole).toString();
-    //qDebug()<<idString;
-    //qDebug()<<addressTxt;
 }
 
 void AllThingsMenu::sendingBackSlot(){
@@ -58,7 +56,6 @@ void AllThingsMenu::sendingBackSlot(){
 
 void AllThingsMenu::becomeAddressSlot(QString text){
     addressString=text;
-    //qDebug()<<addressString;
 }
 
 void AllThingsMenu::updateStuffTree(){
@@ -67,32 +64,35 @@ void AllThingsMenu::updateStuffTree(){
 
     connectionDB->changeConnectionToALLINFO();
 
+    // become id, reck, shelf, thing from the DB
     QString queryText = "SELECT id, reck, shelf, thing FROM allInfoKladovki WHERE address = '"
                         +addressString+"' ;";
     if(!connectionDB->query->exec(queryText)){
+        logging->messageHandler(Logger::WARNING,"AllThingsMenu","Fail in request by updating tree widget");
         qDebug()<<"Fail SQL Engine in <allthingsmenu.cpp>!";
         return;
     }
 
+    // Reading id, reck, shelf, thing from the query
     QSqlRecord rec = connectionDB->query->record();
+
     treeView->clear();
     QStringList lst;
-    //lst<<"reck"<<"shelf"<<"thing"<<"ID";
     lst<<"thing"<<"reck"<<"shelf"<<"ID";
     treeView->setHeaderLabels(lst);
+    treeView->setColumnWidth(0,150);
+    treeView->setColumnWidth(1,20);
+    treeView->setColumnWidth(2,20);
+    treeView->setColumnWidth(3,20);
 
-
-    //int tmpID,tmpReck,tmpShelf;
+    // Filling the widget with id, reck, shelf, thing information
     QString tmpID="",tmpReck="",tmpShelf="", tmpThing="";
-
     while(connectionDB->query->next()){
 
         tmpID = connectionDB->query->value(rec.indexOf("id")).toString();
         tmpReck = connectionDB->query->value(rec.indexOf("reck")).toString();
         tmpShelf = connectionDB->query->value(rec.indexOf("shelf")).toString();
         tmpThing=connectionDB->query->value(rec.indexOf("thing")).toString();
-
-        //qDebug()<<tmpID<<" "<<tmpReck<<" "<<tmpShelf<<" "<<tmpThing;
 
         treeItem = new QTreeWidgetItem(treeView);
 

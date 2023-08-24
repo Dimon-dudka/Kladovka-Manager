@@ -1,5 +1,9 @@
+//  Describing openKladovkaMenu Widget
+//  This widget contatins in the tree view all storages(addresses of them)
+
 #pragma once
 
+//  Basic headers files
 #include <QWidget>
 #include <QTreeWidget>
 #include <QTreeWidgetItem>
@@ -8,9 +12,12 @@
 #include <QBoxLayout>
 #include <QString>
 #include <QMessageBox>
-//  Describing openKladovkaMenu Widget
 
+//  Projects own SQLite engine
 #include "sqlengine.h"
+
+//  Logger
+#include "logger.h"
 
 class OpenKladovkaMenu : public QWidget
 {
@@ -18,35 +25,30 @@ class OpenKladovkaMenu : public QWidget
 
 private:
 
-    SQLEngine *connectionDB;
+    Logger *logging;
 
+    SQLEngine *connectionDB;
     QLabel *someInfoLabel;
     QVBoxLayout *menuLayout;
     QHBoxLayout *buttonsLayout;
     QPushButton *backMainMenuButton,*acceptChoiseAndNextButton,*deleteKladovkaButton;
-
     QTreeWidget *treeView;
     QTreeWidgetItem *treeItem;
-
     QString addressTxt;
 
 
 public:
-    OpenKladovkaMenu(SQLEngine *connectParameter,QWidget* parrent=0);
+    OpenKladovkaMenu(Logger *logParrent,SQLEngine *connectParameter,QWidget* parrent=0);
 
 public slots:
 
-    //void updateOfTreeWidget();
     void updateOfAddressesList();
 
 private slots:
 
     void sendingbackToMainMenuSlot();
-
     void userAddressChoiseSlot(QTreeWidgetItem* test,int number);
-
     void deletingButtonSlot();
-
     void proofAddressAndSendSlot();
 
 signals:

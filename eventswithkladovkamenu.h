@@ -1,5 +1,8 @@
+//  Menu contains some Buttons for working with the choisen Kladovka(storage)
+
 #pragma once
 
+//  Basic headers files
 #include <QWidget>
 #include <QPushButton>
 #include <QBoxLayout>
@@ -13,11 +16,9 @@ class EventsWithKladovkaMenu : public QWidget
 private:
 
     QString addressText;
-
     QLabel *addressKladovkiLabel;
     QPushButton *insertButton,*deleteButton,*printAllButton,
         *findKonkretThingButton,*backButton;
-
     QVBoxLayout *eventsMenuLayout;
 
 public:
@@ -30,15 +31,13 @@ public slots:
 
 private slots:
 
-    void sendingBackSignal();
-    void insertDeleteWidgetOpen();
+    void sendingBackSignalSlot();
+    void insertDeleteWidgetOpenSlot();
     void sendingPrintAllSlot();
 
 signals:
 
     void backSignal();
     void printAllSignal();
-
     void insertDeleteWidgetOpenSignal();
-
 };

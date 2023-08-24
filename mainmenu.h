@@ -2,13 +2,17 @@
 
 #pragma once
 
+//  Basic headers files
 #include <QWidget>
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QApplication>
 #include <QLabel>
 #include <QString>
+#include <QMessageBox>
 
+//  Projects own SQLite engine
+//  In here its proof that with SQL all right
 #include "sqlengine.h"
 
 class MainMenu : public QWidget
@@ -18,12 +22,9 @@ class MainMenu : public QWidget
 private:
 
     SQLEngine *DBOpenProof;
-
     QPushButton *newKladovkaButton,
-        *openExistsKladovkaButton, *exitButton;
-
+        *openExistsKladovkaButton, *exitButton,*settingsButton;
     QVBoxLayout *mainMenuLayout;
-
     QLabel *infoLabel,*errorLabel;
 
 public:
@@ -35,17 +36,15 @@ private slots:
 
     void newKladovkaSlotPrivate();
     void openExistsKladovkaSlotPrivate();
+    void openSettingsMenuSlot();
 
 public slots:
 
-    void changeLabelAfterError(QString text){
-        qDebug()<<"changeLabelAfterError";
-         errorLabel->setText(text);
-    }
+    void changeLabelAfterError(QString text);
 
 signals:
 
     void newKladovkaSignal();
     void openExistsKladovkaSignal();
-
+    void openSettingsMenuSignal();
 };

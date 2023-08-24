@@ -16,44 +16,44 @@
 #include "eventswithkladovkamenu.h"
 #include "insertdeletemenu.h"
 #include "allthingsmenu.h"
+#include "settingsmenu.h"
 
 //  SQLite Engine
 #include "sqlengine.h"
+
+
+//  Logger
+#include "logger.h"
 
 class WidgetManager : public QStackedWidget
 {
     Q_OBJECT
 
 private:
+
+    Logger *logging;
     SQLEngine *test;
-
-
     MainMenu *mainMenuWidget;
     NewKladovkaMenu *newKladovkaMenuWidget;
     OpenKladovkaMenu *openKladovkaWidget;
     EventsWithKladovkaMenu *eventKladovkaWidget;
     InsertDeleteMenu *insertDeleteMenuWidget;
-    AllThingsMenu *allThinksMenuWidget;
+    AllThingsMenu *allThingsMenuWidget;
+    SettingsMenu *settingsMenu;
 
 public:
 
     WidgetManager(QStackedWidget * parrent = 0);
 
-
-public slots:
-
-
-
 private slots:
 
+    //Slots that change the current Widget to another
     void setCurrentMainMenuWidget();
     void setCurrentNewKladovkaWidget();
     void setCurrentOpenKladovkaWidget();
     void setCurrentEventKladovkaMenuWidget();
     void setCurrentInsertDeleteMenuWidget();
     void setCurrentAllThingsMenuWidget();
-
-signals:
-
+    void setCurrentSettingsmenuWidget();
 
 };

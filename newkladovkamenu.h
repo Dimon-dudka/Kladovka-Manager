@@ -1,7 +1,9 @@
-//  Describing New Kladovka Menu Widget
+//  Describing New Kladovka(storage) Menu Widget
+//  This widget contatins ability to create the new storage
 
 #pragma once
 
+//  Basic headers files
 #include <QWidget>
 #include <QPushButton>
 #include <QBoxLayout>
@@ -9,6 +11,7 @@
 #include <QLabel>
 #include <QString>
 
+//  Projects own SQLite engine
 #include "sqlengine.h"
 
 class NewKladovkaMenu : public QWidget
@@ -18,13 +21,11 @@ class NewKladovkaMenu : public QWidget
 private:
 
     SQLEngine *insertToDBAddress;
-
     QPushButton *backToMainMenuButton,*pushTheAddressToSQLButton;
     QVBoxLayout *mainLayout;
     QHBoxLayout *buttonsLayout;
     QLineEdit *addressEditingLine;
     QLabel *userInfoLabel,*sqlQueryStatus;
-
     QString addressFromLabel;
 
 public:
@@ -40,7 +41,6 @@ private slots:
 signals:
 
     void backToMainMenuSignal();
-
     void queryToSQLEngineSignal(QString txt);
 
 };

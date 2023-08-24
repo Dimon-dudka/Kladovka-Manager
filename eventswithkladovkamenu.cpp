@@ -9,38 +9,40 @@ EventsWithKladovkaMenu::EventsWithKladovkaMenu(QWidget *parrent):QWidget(parrent
     addressKladovkiLabel->setAlignment(Qt::AlignCenter);
     addressKladovkiLabel->setText(addressText);
 
+    QFont font=addressKladovkiLabel->font();
+    font.setPointSize(10);
+    font.setBold(true);
+    addressKladovkiLabel->setFont(font);
+
     insertButton = new QPushButton("Insert/Delete Item");
     deleteButton = new QPushButton("Delete Item");
     printAllButton = new QPushButton("Print all stuff in the Kladovka");
-    //to another buttons
     backButton = new QPushButton("Back");
 
     eventsMenuLayout=new QVBoxLayout;
     eventsMenuLayout->addWidget(addressKladovkiLabel);
     eventsMenuLayout->addWidget(insertButton);
-    //eventsMenuLayout->addWidget(deleteButton);
     eventsMenuLayout->addWidget(printAllButton);
     eventsMenuLayout->addWidget(backButton);
 
-    connect(backButton,SIGNAL(clicked()),this,SLOT(sendingBackSignal()));
-    connect(insertButton,SIGNAL(clicked()),this,SLOT(insertDeleteWidgetOpen()));
+    //Buttons connections
+    connect(backButton,SIGNAL(clicked()),this,SLOT(sendingBackSignalSlot()));
+    connect(insertButton,SIGNAL(clicked()),this,SLOT(insertDeleteWidgetOpenSlot()));
     connect(printAllButton,SIGNAL(clicked()),this,SLOT(sendingPrintAllSlot()));
 
     setLayout(eventsMenuLayout);
-
 }
 
 void EventsWithKladovkaMenu::becomeAddressTextSlot(QString address){
-    //qDebug()<<address;
     addressText=address;
     addressKladovkiLabel->setText(addressText);
 }
 
-void EventsWithKladovkaMenu::sendingBackSignal(){
+void EventsWithKladovkaMenu::sendingBackSignalSlot(){
     emit backSignal();
 }
 
-void EventsWithKladovkaMenu::insertDeleteWidgetOpen(){
+void EventsWithKladovkaMenu::insertDeleteWidgetOpenSlot(){
     emit insertDeleteWidgetOpenSignal();
 }
 

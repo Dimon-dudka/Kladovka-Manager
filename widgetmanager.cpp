@@ -2,54 +2,67 @@
 
 WidgetManager::WidgetManager(QStackedWidget * parrent):QStackedWidget(parrent)
 {
-    test= new SQLEngine;
+    logging = new Logger;
+    test= new SQLEngine(logging);
 
-    setWindowTitle("Kladovka Manager v 0.1");
+    setWindowTitle("Kladovka Manager");
 
-    setMinimumSize(200,150);
+    //setWindowIcon(QIcon("C:/Users/D/Documents/Kladovka/KladovkaProject/logo.png"));
+
+    setMinimumSize(300,150);
 
     mainMenuWidget = new MainMenu(test);
     newKladovkaMenuWidget = new NewKladovkaMenu(test);
-    openKladovkaWidget = new OpenKladovkaMenu(test);
+    openKladovkaWidget = new OpenKladovkaMenu(logging,test);
     eventKladovkaWidget = new EventsWithKladovkaMenu;
     insertDeleteMenuWidget = new InsertDeleteMenu(test);
-    allThinksMenuWidget = new AllThingsMenu(test);
+    allThingsMenuWidget = new AllThingsMenu(logging,test);
+    settingsMenu = new SettingsMenu(logging);
 
     addWidget(mainMenuWidget);
     addWidget(newKladovkaMenuWidget);
     addWidget(openKladovkaWidget);
     addWidget(eventKladovkaWidget);
     addWidget(insertDeleteMenuWidget);
-    addWidget(allThinksMenuWidget);
+    addWidget(allThingsMenuWidget);
+    addWidget(settingsMenu);
 
+    //Main Menu connections
     connect(mainMenuWidget,SIGNAL(newKladovkaSignal()),this,SLOT(setCurrentNewKladovkaWidget()));
-    connect(newKladovkaMenuWidget,SIGNAL(backToMainMenuSignal()),this,SLOT(setCurrentMainMenuWidget()));
     connect(mainMenuWidget,SIGNAL(openExistsKladovkaSignal()),this,SLOT(setCurrentOpenKladovkaWidget()));
+    connect(mainMenuWidget,SIGNAL(openExistsKladovkaSignal())
+            ,openKladovkaWidget,SLOT(updateOfAddressesList()));
+    connect(mainMenuWidget,SIGNAL(openSettingsMenuSignal()),this,SLOT(setCurrentSettingsmenuWidget()));
 
+    //New Kladovka connections
+    connect(newKladovkaMenuWidget,SIGNAL(backToMainMenuSignal()),this,SLOT(setCurrentMainMenuWidget()));
+
+    //Open Kladovka connections
     connect(openKladovkaWidget,SIGNAL(backToMainMenuSignal()),this,SLOT(setCurrentMainMenuWidget()));
     connect(openKladovkaWidget,SIGNAL(sendTheAddressSignal(QString))
             ,eventKladovkaWidget,SLOT(becomeAddressTextSlot(QString)));
     connect(openKladovkaWidget,SIGNAL(nextMenuSignal())
             ,this,SLOT(setCurrentEventKladovkaMenuWidget()));
+    connect(openKladovkaWidget,SIGNAL(sendTheAddressSignal(QString))
+            ,insertDeleteMenuWidget,SLOT(becomeAddressSlot(QString)));
+    connect(openKladovkaWidget,SIGNAL(sendTheAddressSignal(QString))
+            ,allThingsMenuWidget,SLOT(becomeAddressSlot(QString)));
 
+    //Event Kladovka connections
     connect(eventKladovkaWidget,SIGNAL(backSignal()),this,SLOT(setCurrentOpenKladovkaWidget()));
     connect(eventKladovkaWidget,SIGNAL(insertDeleteWidgetOpenSignal())
             ,this,SLOT(setCurrentInsertDeleteMenuWidget()));
+    connect(eventKladovkaWidget,SIGNAL(printAllSignal()),this,SLOT(setCurrentAllThingsMenuWidget()));
+    connect(eventKladovkaWidget,SIGNAL(printAllSignal()),allThingsMenuWidget,SLOT(updateStuffTree()));
 
-    connect(mainMenuWidget,SIGNAL(openExistsKladovkaSignal())
-            ,openKladovkaWidget,SLOT(updateOfAddressesList()));
-
-
-    connect(openKladovkaWidget,SIGNAL(sendTheAddressSignal(QString))
-            ,insertDeleteMenuWidget,SLOT(becomeAddressSlot(QString)));
-
+    //Insert Delete Menu connections
     connect(insertDeleteMenuWidget,SIGNAL(backSignal()),this,SLOT(setCurrentEventKladovkaMenuWidget()));
 
-    connect(eventKladovkaWidget,SIGNAL(printAllSignal()),this,SLOT(setCurrentAllThingsMenuWidget()));
-    connect(eventKladovkaWidget,SIGNAL(printAllSignal()),allThinksMenuWidget,SLOT(updateStuffTree()));
+    //Print all things connections
+    connect(allThingsMenuWidget,SIGNAL(backSignal()),this,SLOT(setCurrentEventKladovkaMenuWidget()));
 
-    connect(allThinksMenuWidget,SIGNAL(backSignal()),this,SLOT(setCurrentEventKladovkaMenuWidget()));
-    connect(openKladovkaWidget,SIGNAL(sendTheAddressSignal(QString)),allThinksMenuWidget,SLOT(becomeAddressSlot(QString)));
+    //Settings Menu connections
+    connect(settingsMenu,SIGNAL(backToMainMenuSignal()),this,SLOT(setCurrentMainMenuWidget()));
 
     setCurrentWidget(mainMenuWidget);
 
@@ -78,5 +91,9 @@ void WidgetManager::setCurrentInsertDeleteMenuWidget(){
 }
 
 void WidgetManager::setCurrentAllThingsMenuWidget(){
-    setCurrentWidget(allThinksMenuWidget);
+    setCurrentWidget(allThingsMenuWidget);
+}
+
+void WidgetManager::setCurrentSettingsmenuWidget(){
+    setCurrentWidget(settingsMenu);
 }
