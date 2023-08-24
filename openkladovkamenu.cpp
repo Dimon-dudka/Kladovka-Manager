@@ -61,6 +61,7 @@ void OpenKladovkaMenu::deletingButtonSlot(){
 
     connectionDB->changeConnectionToADDRESSES();
     connectionDB->deleteTheKladovka(addressTxt);
+    addressTxt="";
 
     updateOfAddressesList();
 
