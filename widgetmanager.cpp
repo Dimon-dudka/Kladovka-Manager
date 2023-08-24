@@ -7,7 +7,9 @@ WidgetManager::WidgetManager(QStackedWidget * parrent):QStackedWidget(parrent)
 
     setWindowTitle("Kladovka Manager");
 
-    //setWindowIcon(QIcon("C:/Users/D/Documents/Kladovka/KladovkaProject/logo.png"));
+    QPixmap pix(":images/logo.png");
+    setWindowIcon(QIcon(pix));
+
 
     setMinimumSize(300,150);
 

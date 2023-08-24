@@ -1,7 +1,7 @@
 #include "openkladovkamenu.h"
 
 OpenKladovkaMenu::OpenKladovkaMenu(Logger *logParrent,SQLEngine *connectParameter,QWidget* parrent)
-    :QWidget(parrent),connectionDB(connectParameter),logging(logParrent)
+    :QWidget(parrent),logging(logParrent),connectionDB(connectParameter)
 {
 
     addressTxt = "";

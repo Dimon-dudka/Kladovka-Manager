@@ -2,7 +2,7 @@
 #include "allthingsmenu.h"
 
 AllThingsMenu::AllThingsMenu(Logger *logParrent,SQLEngine *connection,QWidget *parrent)
-    :QWidget(parrent),connectionDB(connection),logging(logParrent)
+    :QWidget(parrent),logging(logParrent),connectionDB(connection)
 {
 
     userInfoLabel = new QLabel("");
