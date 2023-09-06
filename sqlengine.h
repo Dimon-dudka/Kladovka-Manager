@@ -6,6 +6,7 @@
 #include <QtSql>
 #include <QObject>
 #include <QString>
+#include <QCoreApplication>
 
 //  Logger
 #include "logger.h"
@@ -20,6 +21,8 @@ private:
     QSqlDatabase alldb;
 
     Logger *logging;
+
+    QString directory;
 
 public:
 

@@ -8,13 +8,16 @@
 #include <QTextStream>
 #include <QDateTime>
 #include <QMessageBox>
-//#include <QLoggingCategory>
+#include <QCoreApplication>
+#include <QString>
 
 class Logger
 {
 private:
 
     QScopedPointer<QFile> logFile;
+
+    QString direction;
 
 public:
 
