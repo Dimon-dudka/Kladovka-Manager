@@ -15,7 +15,7 @@ EventsWithKladovkaMenu::EventsWithKladovkaMenu(QWidget *parrent):QWidget(parrent
     addressKladovkiLabel->setFont(font);
 
     insertButton = new QPushButton("Insert/Delete Item");
-    deleteButton = new QPushButton("Delete Item");
+    //deleteButton = new QPushButton("Delete Item");
     printAllButton = new QPushButton("Print all stuff in the Kladovka");
     backButton = new QPushButton("Back");
 

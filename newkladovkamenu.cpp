@@ -23,12 +23,14 @@ NewKladovkaMenu::NewKladovkaMenu(SQLEngine *test,QWidget * parrent)
 
     addressEditingLine = new QLineEdit("");
 
-    backToMainMenuButton = new QPushButton("Back To Menu");
-    pushTheAddressToSQLButton = new QPushButton("Enter the new address");
+    backToMainMenuButton = new QPushButton("Back");
+    pushTheAddressToSQLButton = new QPushButton("Enter");
+    openNewKladovka = new QPushButton("Open");
 
     buttonsLayout = new QHBoxLayout;
     buttonsLayout->addWidget(backToMainMenuButton);
     buttonsLayout->addWidget(pushTheAddressToSQLButton);
+    buttonsLayout->addWidget(openNewKladovka);
 
     mainLayout = new QVBoxLayout;
     mainLayout->addWidget(sqlQueryStatus);
@@ -40,6 +42,7 @@ NewKladovkaMenu::NewKladovkaMenu(SQLEngine *test,QWidget * parrent)
     connect(backToMainMenuButton,SIGNAL(clicked()),this,SLOT(backToMainMenuSlot()));
     connect(pushTheAddressToSQLButton,SIGNAL(clicked())
             ,this,SLOT(sendingSignalToSQLEngineSlot()));
+    connect(openNewKladovka,SIGNAL(clicked()),this,SLOT(goingToNewKladovkaSlot()));
 
     //Line edit connections
     connect(addressEditingLine,SIGNAL(textChanged(QString))
@@ -55,6 +58,16 @@ NewKladovkaMenu::NewKladovkaMenu(SQLEngine *test,QWidget * parrent)
 
     setLayout(mainLayout);
 
+}
+
+void NewKladovkaMenu::goingToNewKladovkaSlot(){
+
+    if(sqlQueryStatus->text() !="Address added"){
+        return;
+    }
+
+    emit goingToNewKladovkaSignal();
+    emit changeAddressSignal(addressFromLabel);
 }
 
 void NewKladovkaMenu::backToMainMenuSlot(){

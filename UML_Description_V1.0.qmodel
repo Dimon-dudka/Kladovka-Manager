@@ -164,7 +164,7 @@
                          </base-DElement>
                          <object>{abe5d4b2-86f8-4afe-a3e7-8f9ee282ec0a}</object>
                          <name>NewKladovkaMenu</name>
-                         <pos>x:-140;y:360</pos>
+                         <pos>x:-160;y:300</pos>
                          <rect>x:-65;y:-35;w:130;h:70</rect>
                          <visual-role>0</visual-role>
                         </DObject>
@@ -220,7 +220,7 @@
                          </base-DElement>
                          <object>{0870448e-1e5a-4147-be77-2ca1b92b9e12}</object>
                          <name>OpenKladovka</name>
-                         <pos>x:-155;y:185</pos>
+                         <pos>x:-215;y:105</pos>
                          <rect>x:-55;y:-35;w:110;h:70</rect>
                          <visual-role>0</visual-role>
                         </DObject>
@@ -388,7 +388,7 @@
                          </base-DElement>
                          <object>{ab9c7239-7e2f-44c1-afe8-832a7ab51361}</object>
                          <name>EventsWithKladovka</name>
-                         <pos>x:80;y:-20</pos>
+                         <pos>x:75;y:-30</pos>
                          <rect>x:-65;y:-35;w:130;h:70</rect>
                          <visual-role>0</visual-role>
                         </DObject>
@@ -444,7 +444,7 @@
                          </base-DElement>
                          <object>{6fb9242c-d2cf-490e-bbb7-42f6975780db}</object>
                          <name>InsertDeleteMenu</name>
-                         <pos>x:-35;y:65</pos>
+                         <pos>x:-100;y:25</pos>
                          <rect>x:-60;y:-35;w:120;h:70</rect>
                          <visual-role>0</visual-role>
                         </DObject>
@@ -519,6 +519,11 @@
                           </DElement>
                          </base-DElement>
                          <object>{befbde18-fcd3-416d-a1d3-5cc3073a60f3}</object>
+                         <stereotypes>
+                          <qlist>
+                           <item>database</item>
+                          </qlist>
+                         </stereotypes>
                          <a>{9f8d4de5-ccc7-43e2-97a2-c53c3f1c6eaa}</a>
                          <b>{ef9dbca3-bbec-4d38-8622-9ec9c0a3f12d}</b>
                         </DRelation>
@@ -537,6 +542,11 @@
                           </DElement>
                          </base-DElement>
                          <object>{4450609a-ef05-403e-b624-1ff772232b0f}</object>
+                         <stereotypes>
+                          <qlist>
+                           <item>database</item>
+                          </qlist>
+                         </stereotypes>
                          <a>{9f8d4de5-ccc7-43e2-97a2-c53c3f1c6eaa}</a>
                          <b>{29166bfe-c3c9-4d6c-85b2-6ac220a49e15}</b>
                         </DRelation>
@@ -555,6 +565,11 @@
                           </DElement>
                          </base-DElement>
                          <object>{8b840853-e539-4130-9425-cdab8846d11f}</object>
+                         <stereotypes>
+                          <qlist>
+                           <item>database</item>
+                          </qlist>
+                         </stereotypes>
                          <a>{9f8d4de5-ccc7-43e2-97a2-c53c3f1c6eaa}</a>
                          <b>{7d4ff150-bf30-42f8-9341-d3856880e515}</b>
                         </DRelation>
@@ -573,6 +588,11 @@
                           </DElement>
                          </base-DElement>
                          <object>{87abd451-9529-4ad1-bae5-923122275517}</object>
+                         <stereotypes>
+                          <qlist>
+                           <item>database</item>
+                          </qlist>
+                         </stereotypes>
                          <a>{9f8d4de5-ccc7-43e2-97a2-c53c3f1c6eaa}</a>
                          <b>{85aa6cb5-685b-4361-9678-f1a389e9aa0f}</b>
                         </DRelation>
@@ -591,6 +611,11 @@
                           </DElement>
                          </base-DElement>
                          <object>{9d4d8069-1cef-4bb0-aac3-67f4bafe0747}</object>
+                         <stereotypes>
+                          <qlist>
+                           <item>database</item>
+                          </qlist>
+                         </stereotypes>
                          <a>{9f8d4de5-ccc7-43e2-97a2-c53c3f1c6eaa}</a>
                          <b>{c13445fb-30b9-4432-ade3-6a790a266b6c}</b>
                         </DRelation>
@@ -609,6 +634,11 @@
                           </DElement>
                          </base-DElement>
                          <object>{869a9f7d-c806-443a-9f41-3573abf84e69}</object>
+                         <stereotypes>
+                          <qlist>
+                           <item>database</item>
+                          </qlist>
+                         </stereotypes>
                          <a>{9f8d4de5-ccc7-43e2-97a2-c53c3f1c6eaa}</a>
                          <b>{060ef2f0-dac9-4f84-9af8-09f3274825d9}</b>
                         </DRelation>
@@ -683,6 +713,11 @@
                           </DElement>
                          </base-DElement>
                          <object>{4b681874-798e-47c5-8182-a45dfc5d5f27}</object>
+                         <stereotypes>
+                          <qlist>
+                           <item>database</item>
+                          </qlist>
+                         </stereotypes>
                          <a>{9f8d4de5-ccc7-43e2-97a2-c53c3f1c6eaa}</a>
                          <b>{db86c071-b781-425f-90cd-0a744b7749dc}</b>
                         </DRelation>
@@ -744,6 +779,11 @@
                           </DElement>
                          </base-DElement>
                          <object>{3f11d347-adef-447d-9b7c-279e3d571ee0}</object>
+                         <stereotypes>
+                          <qlist>
+                           <item>database</item>
+                          </qlist>
+                         </stereotypes>
                          <a>{9f8d4de5-ccc7-43e2-97a2-c53c3f1c6eaa}</a>
                          <b>{073ad20d-0d21-4f98-af51-933c3236b201}</b>
                         </DRelation>
@@ -805,6 +845,11 @@
                           </DElement>
                          </base-DElement>
                          <object>{dc06d531-19f1-43fc-a6c7-3f0a9791844c}</object>
+                         <stereotypes>
+                          <qlist>
+                           <item>database</item>
+                          </qlist>
+                         </stereotypes>
                          <a>{9f8d4de5-ccc7-43e2-97a2-c53c3f1c6eaa}</a>
                          <b>{aa69b9ce-c87b-4692-8625-0a0bb94749e7}</b>
                         </DRelation>
@@ -812,9 +857,27 @@
                       </DDependency>
                      </instance>
                     </item>
+                    <item>
+                     <instance type="DDependency">
+                      <DDependency>
+                       <base-DRelation>
+                        <DRelation>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{97decc01-b45c-407f-b6ef-2c0ec3e865ff}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{ea79d92e-0e64-435d-83db-ca46f0360126}</object>
+                         <a>{29166bfe-c3c9-4d6c-85b2-6ac220a49e15}</a>
+                         <b>{c13445fb-30b9-4432-ade3-6a790a266b6c}</b>
+                        </DRelation>
+                       </base-DRelation>
+                      </DDependency>
+                     </instance>
+                    </item>
                    </qlist>
                   </elements>
-                  <last-modified>1693496213081</last-modified>
+                  <last-modified>1696621738572</last-modified>
                   <toolbarid>Classes</toolbarid>
                  </MDiagram>
                 </base-MDiagram>
@@ -1182,6 +1245,28 @@
                         </target>
                        </handle>
                       </item>
+                      <item>
+                       <handle>
+                        <uid>{ea79d92e-0e64-435d-83db-ca46f0360126}</uid>
+                        <target>
+                         <instance type="MDependency">
+                          <MDependency>
+                           <base-MRelation>
+                            <MRelation>
+                             <base-MElement>
+                              <MElement>
+                               <uid>{ea79d92e-0e64-435d-83db-ca46f0360126}</uid>
+                              </MElement>
+                             </base-MElement>
+                             <a>{abe5d4b2-86f8-4afe-a3e7-8f9ee282ec0a}</a>
+                             <b>{ab9c7239-7e2f-44c1-afe8-832a7ab51361}</b>
+                            </MRelation>
+                           </base-MRelation>
+                          </MDependency>
+                         </instance>
+                        </target>
+                       </handle>
+                      </item>
                      </qlist>
                     </handles>
                    </handles>
@@ -1533,6 +1618,11 @@
                              <base-MElement>
                               <MElement>
                                <uid>{befbde18-fcd3-416d-a1d3-5cc3073a60f3}</uid>
+                               <stereotypes>
+                                <qlist>
+                                 <item>database</item>
+                                </qlist>
+                               </stereotypes>
                               </MElement>
                              </base-MElement>
                              <a>{851402a6-3e50-4ccc-bb1e-0425f340797c}</a>
@@ -1577,6 +1667,11 @@
                              <base-MElement>
                               <MElement>
                                <uid>{4450609a-ef05-403e-b624-1ff772232b0f}</uid>
+                               <stereotypes>
+                                <qlist>
+                                 <item>database</item>
+                                </qlist>
+                               </stereotypes>
                               </MElement>
                              </base-MElement>
                              <a>{851402a6-3e50-4ccc-bb1e-0425f340797c}</a>
@@ -1599,6 +1694,11 @@
                              <base-MElement>
                               <MElement>
                                <uid>{8b840853-e539-4130-9425-cdab8846d11f}</uid>
+                               <stereotypes>
+                                <qlist>
+                                 <item>database</item>
+                                </qlist>
+                               </stereotypes>
                               </MElement>
                              </base-MElement>
                              <a>{851402a6-3e50-4ccc-bb1e-0425f340797c}</a>
@@ -1621,6 +1721,11 @@
                              <base-MElement>
                               <MElement>
                                <uid>{87abd451-9529-4ad1-bae5-923122275517}</uid>
+                               <stereotypes>
+                                <qlist>
+                                 <item>database</item>
+                                </qlist>
+                               </stereotypes>
                               </MElement>
                              </base-MElement>
                              <a>{851402a6-3e50-4ccc-bb1e-0425f340797c}</a>
@@ -1643,6 +1748,11 @@
                              <base-MElement>
                               <MElement>
                                <uid>{9d4d8069-1cef-4bb0-aac3-67f4bafe0747}</uid>
+                               <stereotypes>
+                                <qlist>
+                                 <item>database</item>
+                                </qlist>
+                               </stereotypes>
                               </MElement>
                              </base-MElement>
                              <a>{851402a6-3e50-4ccc-bb1e-0425f340797c}</a>
@@ -1665,6 +1775,11 @@
                              <base-MElement>
                               <MElement>
                                <uid>{869a9f7d-c806-443a-9f41-3573abf84e69}</uid>
+                               <stereotypes>
+                                <qlist>
+                                 <item>database</item>
+                                </qlist>
+                               </stereotypes>
                               </MElement>
                              </base-MElement>
                              <a>{851402a6-3e50-4ccc-bb1e-0425f340797c}</a>
@@ -1687,6 +1802,11 @@
                              <base-MElement>
                               <MElement>
                                <uid>{4b681874-798e-47c5-8182-a45dfc5d5f27}</uid>
+                               <stereotypes>
+                                <qlist>
+                                 <item>database</item>
+                                </qlist>
+                               </stereotypes>
                               </MElement>
                              </base-MElement>
                              <a>{851402a6-3e50-4ccc-bb1e-0425f340797c}</a>
@@ -1709,6 +1829,11 @@
                              <base-MElement>
                               <MElement>
                                <uid>{3f11d347-adef-447d-9b7c-279e3d571ee0}</uid>
+                               <stereotypes>
+                                <qlist>
+                                 <item>database</item>
+                                </qlist>
+                               </stereotypes>
                               </MElement>
                              </base-MElement>
                              <a>{851402a6-3e50-4ccc-bb1e-0425f340797c}</a>
@@ -1731,6 +1856,11 @@
                              <base-MElement>
                               <MElement>
                                <uid>{dc06d531-19f1-43fc-a6c7-3f0a9791844c}</uid>
+                               <stereotypes>
+                                <qlist>
+                                 <item>database</item>
+                                </qlist>
+                               </stereotypes>
                               </MElement>
                              </base-MElement>
                              <a>{851402a6-3e50-4ccc-bb1e-0425f340797c}</a>

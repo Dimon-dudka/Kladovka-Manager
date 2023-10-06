@@ -38,6 +38,15 @@ WidgetManager::WidgetManager(QStackedWidget * parrent):QStackedWidget(parrent)
 
     //New Kladovka connections
     connect(newKladovkaMenuWidget,SIGNAL(backToMainMenuSignal()),this,SLOT(setCurrentMainMenuWidget()));
+    connect(newKladovkaMenuWidget,SIGNAL(goingToNewKladovkaSignal()),this,SLOT(setCurrentEventKladovkaMenuWidget()));
+    connect(newKladovkaMenuWidget,SIGNAL(changeAddressSignal(QString))
+            ,eventKladovkaWidget,SLOT(becomeAddressTextSlot(QString)));
+    connect(newKladovkaMenuWidget,SIGNAL(changeAddressSignal(QString))
+            ,insertDeleteMenuWidget,SLOT(becomeAddressSlot(QString)));
+    connect(newKladovkaMenuWidget,SIGNAL(changeAddressSignal(QString))
+            ,allThingsMenuWidget,SLOT(becomeAddressSlot(QString)));
+    connect(newKladovkaMenuWidget,SIGNAL(changeAddressSignal(QString))
+            ,openKladovkaWidget,SLOT(updateOfAddressesList()));
 
     //Open Kladovka connections
     connect(openKladovkaWidget,SIGNAL(backToMainMenuSignal()),this,SLOT(setCurrentMainMenuWidget()));

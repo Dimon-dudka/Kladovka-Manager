@@ -17,7 +17,7 @@ private:
 
     QString addressText;
     QLabel *addressKladovkiLabel;
-    QPushButton *insertButton,*deleteButton,*printAllButton,
+    QPushButton *insertButton,/**deleteButton,*/*printAllButton,
         *findKonkretThingButton,*backButton;
     QVBoxLayout *eventsMenuLayout;
 

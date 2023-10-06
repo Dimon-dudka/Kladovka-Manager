@@ -21,7 +21,7 @@ class NewKladovkaMenu : public QWidget
 private:
 
     SQLEngine *insertToDBAddress;
-    QPushButton *backToMainMenuButton,*pushTheAddressToSQLButton;
+    QPushButton *backToMainMenuButton,*pushTheAddressToSQLButton,*openNewKladovka;
     QVBoxLayout *mainLayout;
     QHBoxLayout *buttonsLayout;
     QLineEdit *addressEditingLine;
@@ -37,10 +37,14 @@ private slots:
     void becomeStringFromLineEdit(QString txt);
 
     void sendingSignalToSQLEngineSlot();
+    void goingToNewKladovkaSlot();
 
 signals:
 
     void backToMainMenuSignal();
     void queryToSQLEngineSignal(QString txt);
 
+    //new
+    void goingToNewKladovkaSignal();
+    void changeAddressSignal(QString txt);
 };

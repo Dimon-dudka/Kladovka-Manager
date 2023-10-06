@@ -15,6 +15,7 @@ RC_ICONS = logo.ico
 
 SOURCES += \
     allthingsmenu.cpp \
+    changeitempositionmenu.cpp \
     eventswithkladovkamenu.cpp \
     insertdeletemenu.cpp \
     logger.cpp \
@@ -28,6 +29,7 @@ SOURCES += \
 
 HEADERS += \
     allthingsmenu.h \
+    changeitempositionmenu.h \
     eventswithkladovkamenu.h \
     insertdeletemenu.h \
     logger.h \

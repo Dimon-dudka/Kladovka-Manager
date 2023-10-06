@@ -8,8 +8,14 @@ AllThingsMenu::AllThingsMenu(Logger *logParrent,SQLEngine *connection,QWidget *p
     userInfoLabel = new QLabel("");
     userInfoLabel->setAlignment(Qt::AlignCenter);
 
+    QFont font=userInfoLabel->font();
+    font.setPointSize(10);
+    font.setBold(true);
+    userInfoLabel->setFont(font);
+
     backButton = new QPushButton("Back");
     deleteButton = new QPushButton("Delete Item");
+    changeButton = new QPushButton("Change position");
 
     treeView = new QTreeWidget;
     treeView->setHeaderLabel("Items in this Kladovka");
@@ -21,6 +27,7 @@ AllThingsMenu::AllThingsMenu(Logger *logParrent,SQLEngine *connection,QWidget *p
     buttonsLayout = new QHBoxLayout;
     buttonsLayout->addWidget(backButton);
     buttonsLayout->addWidget(deleteButton);
+    buttonsLayout->addWidget(changeButton);
 
     AllThingsLayout = new QVBoxLayout;
     AllThingsLayout->addWidget(userInfoLabel);

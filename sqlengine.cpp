@@ -88,9 +88,9 @@ void SQLEngine::insertAddressQuery(QString queryText){
 void SQLEngine::changeConnectionToALLINFO(){
 
 
-    alldb.setDatabaseName(directory+"/allInfoKladovki.sqlite");
+    //alldb.setDatabaseName(directory+"/allInfoKladovki.sqlite");
 
-    //alldb.setDatabaseName("C:/Users/D/Documents/Kladovka/KladovkaProject/allInfoKladovki.sqlite");
+    alldb.setDatabaseName("C:/Users/D/Documents/Kladovka/KladovkaProject/allInfoKladovki.sqlite");
     if(!alldb.open()){
         logging->messageHandler(Logger::CRITICAL,"SQLEngine","Data Base connection to"
                                                               " \"allInfoKladovki\" failed");
@@ -101,9 +101,9 @@ void SQLEngine::changeConnectionToALLINFO(){
 
 void SQLEngine::changeConnectionToADDRESSES(){
 
-    alldb.setDatabaseName(directory+"/addressKladovki.sqlite");
+    //alldb.setDatabaseName(directory+"/addressKladovki.sqlite");
 
-    //alldb.setDatabaseName("C:/Users/D/Documents/Kladovka/KladovkaProject/addressKladovki.sqlite");
+    alldb.setDatabaseName("C:/Users/D/Documents/Kladovka/KladovkaProject/addressKladovki.sqlite");
     if(!alldb.open()){
 
         logging->messageHandler(Logger::CRITICAL,"SQLEngine","Data Base connection to"

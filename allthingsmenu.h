@@ -27,7 +27,7 @@ private:
     Logger *logging;
 
     SQLEngine *connectionDB;
-    QPushButton *backButton,*deleteButton;
+    QPushButton *backButton,*deleteButton,*changeButton;
     QTreeWidget *treeView;
     QTreeWidgetItem *treeItem;
     QVBoxLayout *AllThingsLayout;

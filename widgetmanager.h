@@ -4,6 +4,9 @@
 
 #pragma once
 
+//  Standart Libraryes
+#include <QSharedPointer>
+
 //  QT  Libraryes
 #include <QApplication>
 #include <QWidget>
@@ -40,6 +43,8 @@ private:
     InsertDeleteMenu *insertDeleteMenuWidget;
     AllThingsMenu *allThingsMenuWidget;
     SettingsMenu *settingsMenu;
+
+    //QSharedPointer<SettingsMenu>settingsMenu;
 
 public:
 
