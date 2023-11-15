@@ -20,6 +20,7 @@ WidgetManager::WidgetManager(QStackedWidget * parrent):QStackedWidget(parrent)
     insertDeleteMenuWidget = new InsertDeleteMenu(test);
     allThingsMenuWidget = new AllThingsMenu(logging,test);
     settingsMenu = new SettingsMenu(logging);
+    changePositionMenuWidget = new ChangeItemPositionMenu(test);
 
     addWidget(mainMenuWidget);
     addWidget(newKladovkaMenuWidget);
@@ -28,6 +29,7 @@ WidgetManager::WidgetManager(QStackedWidget * parrent):QStackedWidget(parrent)
     addWidget(insertDeleteMenuWidget);
     addWidget(allThingsMenuWidget);
     addWidget(settingsMenu);
+    addWidget(changePositionMenuWidget);
 
     //Main Menu connections
     connect(mainMenuWidget,SIGNAL(newKladovkaSignal()),this,SLOT(setCurrentNewKladovkaWidget()));
@@ -71,9 +73,20 @@ WidgetManager::WidgetManager(QStackedWidget * parrent):QStackedWidget(parrent)
 
     //Print all things connections
     connect(allThingsMenuWidget,SIGNAL(backSignal()),this,SLOT(setCurrentEventKladovkaMenuWidget()));
+    connect(allThingsMenuWidget,SIGNAL(changeSignal(QString,QString,QString,QString)),this,SLOT(setCurrentChangePositionWidget()));
+    connect(allThingsMenuWidget,SIGNAL(changeSignal(QString,QString,QString,QString)),
+            changePositionMenuWidget,SLOT(changeLabelsSlot(QString,QString,QString,QString)));
+
 
     //Settings Menu connections
     connect(settingsMenu,SIGNAL(backToMainMenuSignal()),this,SLOT(setCurrentMainMenuWidget()));
+
+    //Change Item Position Widget
+    connect(changePositionMenuWidget,SIGNAL(backSignal()),this,SLOT(setCurrentAllThingsMenuWidget()));
+    connect(changePositionMenuWidget,SIGNAL(changeSignal(QString,QString,QString))
+            ,test,SLOT(updateThingPositionSlot(QString,QString,QString)));
+    connect(changePositionMenuWidget,SIGNAL(changeSignal(QString,QString,QString))
+            ,this,SLOT(setCurrentAllThingsMenuWidget()));
 
     setCurrentWidget(mainMenuWidget);
 
@@ -107,4 +120,8 @@ void WidgetManager::setCurrentAllThingsMenuWidget(){
 
 void WidgetManager::setCurrentSettingsmenuWidget(){
     setCurrentWidget(settingsMenu);
+}
+
+void WidgetManager::setCurrentChangePositionWidget(){
+    setCurrentWidget(changePositionMenuWidget);
 }

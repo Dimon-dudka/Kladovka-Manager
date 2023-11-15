@@ -89,7 +89,6 @@ void SQLEngine::changeConnectionToALLINFO(){
 
 
     //alldb.setDatabaseName(directory+"/allInfoKladovki.sqlite");
-
     alldb.setDatabaseName("C:/Users/D/Documents/Kladovka/KladovkaProject/allInfoKladovki.sqlite");
     if(!alldb.open()){
         logging->messageHandler(Logger::CRITICAL,"SQLEngine","Data Base connection to"
@@ -191,4 +190,20 @@ void SQLEngine::deleteThingAllByIDSlot(QString id){
 
         emit updataingTreeSignal();
     }
+}
+
+void SQLEngine::updateThingPositionSlot(QString id,QString reck,QString shelf){
+    if(id=="-1")return;
+
+    changeConnectionToALLINFO();
+
+    QString queryText = "UPDATE allInfoKladovki SET reck = "+reck+" , shelf = "+shelf+" WHERE id = "+id;
+
+    if(!query->exec(queryText)){
+        logging->messageHandler(Logger::WARNING,"SQLEngine","Update position request in"
+                                                              " \"allInfoKladovki\" by id failed");
+    }else{
+        emit updataingTreeSignal();
+    }
+
 }

@@ -50,10 +50,12 @@ private slots:
 
     void sendingBackSlot();
     void sendingDeleteQuerySlot();
-    void userChoiseSlot(QTreeWidgetItem* test,int number);
+    void userChoiseSlot(QTreeWidgetItem* test);
+    void changeSlot();
 
 signals:
 
     void backSignal();
     void deleteSignal(QString id="-1");
+    void changeSignal(QString idString,QString item,QString reck,QString shelf);
 };

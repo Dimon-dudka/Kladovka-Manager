@@ -21,6 +21,8 @@
 #include "allthingsmenu.h"
 #include "settingsmenu.h"
 
+#include "changeitempositionmenu.h"
+
 //  SQLite Engine
 #include "sqlengine.h"
 
@@ -43,8 +45,7 @@ private:
     InsertDeleteMenu *insertDeleteMenuWidget;
     AllThingsMenu *allThingsMenuWidget;
     SettingsMenu *settingsMenu;
-
-    //QSharedPointer<SettingsMenu>settingsMenu;
+    ChangeItemPositionMenu *changePositionMenuWidget;
 
 public:
 
@@ -60,5 +61,5 @@ private slots:
     void setCurrentInsertDeleteMenuWidget();
     void setCurrentAllThingsMenuWidget();
     void setCurrentSettingsmenuWidget();
-
+    void setCurrentChangePositionWidget();
 };

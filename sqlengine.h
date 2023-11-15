@@ -45,6 +45,9 @@ public slots:
     void deleteThingAllSlot(QString address,QString reck,QString shelf,QString thing);
     void deleteThingAllByIDSlot(QString id);
 
+    //new
+    void updateThingPositionSlot(QString id,QString reck,QString shelf);
+
 signals:
 
     void errorConnectionSignal(QString text);

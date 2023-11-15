@@ -38,10 +38,11 @@ AllThingsMenu::AllThingsMenu(Logger *logParrent,SQLEngine *connection,QWidget *p
     //Buttons connections
     connect(backButton,SIGNAL(clicked()),this,SLOT(sendingBackSlot()));
     connect(deleteButton,SIGNAL(clicked()),this,SLOT(sendingDeleteQuerySlot()));
+    connect(changeButton,SIGNAL(clicked()),this,SLOT(changeSlot()));
 
     //Tree widget connections
     connect(treeView,SIGNAL(itemClicked(QTreeWidgetItem*,int))
-            ,this,SLOT(userChoiseSlot(QTreeWidgetItem*,int)));
+            ,this,SLOT(userChoiseSlot(QTreeWidgetItem*)));
     connect(connectionDB,SIGNAL(updataingTreeSignal()),this,SLOT(updateStuffTree()));
 
     //SQL connections
@@ -52,9 +53,11 @@ AllThingsMenu::AllThingsMenu(Logger *logParrent,SQLEngine *connection,QWidget *p
 
 }
 
-void AllThingsMenu::userChoiseSlot(QTreeWidgetItem* test,int number){
-    number =3;
-    idString = test->data(number,Qt::DisplayRole).toString();
+void AllThingsMenu::userChoiseSlot(QTreeWidgetItem* test){
+    thingString=test->data(0,Qt::DisplayRole).toString();
+    reckString=test->data(1,Qt::DisplayRole).toString();
+    shelfString=test->data(2,Qt::DisplayRole).toString();
+    idString = test->data(3,Qt::DisplayRole).toString();
 }
 
 void AllThingsMenu::sendingBackSlot(){
@@ -114,12 +117,24 @@ void AllThingsMenu::updateStuffTree(){
 }
 
 void AllThingsMenu::sendingDeleteQuerySlot(){
-    if(idString=="-1")return;
+    if(idString.isEmpty())return;
 
     int n = QMessageBox::warning(0,"Warning","The choisen option is deleting\n"
                                                "Do you wanna delete choisen Thing?",
                                  QMessageBox::Yes|QMessageBox::No,QMessageBox::No);
     if(n==QMessageBox::No)return;
 
-    emit deleteSignal(idString);
+    QString tmpId(std::move(idString));
+
+    emit deleteSignal(tmpId);
+
+}
+
+void AllThingsMenu::changeSlot(){
+    if(idString.isEmpty()||thingString.isEmpty()||reckString.isEmpty()||shelfString.isEmpty())return;
+
+    QString tmpId(std::move(idString)),tmpThing(std::move(thingString))
+        ,tmpReck(std::move(reckString)),tmpShelf(std::move(shelfString));
+
+    emit changeSignal(tmpId,tmpThing,tmpReck,tmpShelf);
 }
