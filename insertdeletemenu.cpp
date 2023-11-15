@@ -37,8 +37,6 @@ InsertDeleteMenu::InsertDeleteMenu(SQLEngine *engine,QWidget *parrent)
     editLayout = new QBoxLayout(QBoxLayout::LeftToRight);
     buttonsLayout = new QBoxLayout(QBoxLayout::LeftToRight);
 
-
-
     labelsLayout->addWidget(reckLabel,1);
     labelsLayout->addWidget(shelfLabel,1);
     labelsLayout->addWidget(thingLabel,3);
@@ -79,18 +77,18 @@ InsertDeleteMenu::InsertDeleteMenu(SQLEngine *engine,QWidget *parrent)
 
 }
 
-void InsertDeleteMenu::reckLabelToStringSlot(QString text){
-    reckString=text;
+void InsertDeleteMenu::reckLabelToStringSlot(const QString text){
+    reckString=std::move(text);
 }
-void InsertDeleteMenu::shelfLabelToStringSlot(QString text){
-    shelfString=text;
+void InsertDeleteMenu::shelfLabelToStringSlot(const QString text){
+    shelfString=std::move(text);
 }
-void InsertDeleteMenu::thingLabelToStringSlot(QString text){
-    thingString=text;
+void InsertDeleteMenu::thingLabelToStringSlot(const QString text){
+    thingString=std::move(text);
 }
 
-void InsertDeleteMenu::becomeAddressSlot(QString address){
-    addressString=address;
+void InsertDeleteMenu::becomeAddressSlot(const QString address){
+    addressString=std::move(address);
 }
 
 void InsertDeleteMenu::sendingBackSignalSlot(){
@@ -102,7 +100,8 @@ void InsertDeleteMenu::sendingInsertSignalSlot(){
         return;
     }
 
-    dataBaseconnection->insertIntoAllSlot(addressString,reckString,shelfString,thingString);
+    dataBaseconnection->insertIntoAllSlot(std::move(addressString),std::move(reckString)
+                                          ,std::move(shelfString),std::move(thingString));
 }
 
 void InsertDeleteMenu::sendingDeletingSignalSlot(){
@@ -116,9 +115,10 @@ void InsertDeleteMenu::sendingDeletingSignalSlot(){
                                  QMessageBox::Yes|QMessageBox::No,QMessageBox::No);
     if(n==QMessageBox::No)return;
 
-    dataBaseconnection->deleteThingAllSlot(addressString,reckString,shelfString,thingString);
+    dataBaseconnection->deleteThingAllSlot(std::move(addressString),std::move(reckString)
+                                           ,std::move(shelfString),std::move(thingString));
 }
 
-void InsertDeleteMenu::becomeInfoLabelTextSlot(QString text){
-    infoLabel->setText(text);
+void InsertDeleteMenu::becomeInfoLabelTextSlot(const QString text){
+    infoLabel->setText(std::move(text));
 }

@@ -36,8 +36,8 @@ public:
 
 public slots:
 
-    void becomeAddressSlot(QString address);
-    void becomeInfoLabelTextSlot(QString text);
+    void becomeAddressSlot(const QString address);
+    void becomeInfoLabelTextSlot(const QString text);
 
 private slots:
 
@@ -46,9 +46,9 @@ private slots:
     void sendingDeletingSignalSlot();
 
     //Slots to become a user choise string from the Line edit
-    void reckLabelToStringSlot(QString text);
-    void shelfLabelToStringSlot(QString text);
-    void thingLabelToStringSlot(QString text);
+    void reckLabelToStringSlot(const QString text);
+    void shelfLabelToStringSlot(const QString text);
+    void thingLabelToStringSlot(const QString text);
 
 
 signals:

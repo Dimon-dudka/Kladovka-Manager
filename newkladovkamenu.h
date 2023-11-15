@@ -34,7 +34,7 @@ public:
 private slots:
 
     void backToMainMenuSlot();
-    void becomeStringFromLineEdit(QString txt);
+    void becomeStringFromLineEdit(const QString txt);
 
     void sendingSignalToSQLEngineSlot();
     void goingToNewKladovkaSlot();

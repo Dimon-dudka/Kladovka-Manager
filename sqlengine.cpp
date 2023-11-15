@@ -9,8 +9,6 @@ SQLEngine::SQLEngine(Logger *logParrent,QObject *parrent): QObject(parrent),logg
 
 void SQLEngine::buildConnectionAndDB(){
 
-    QString str;
-
     //  Making connection and DB if not exists for DB with whole information
     changeConnectionToALLINFO();
 
@@ -19,13 +17,13 @@ void SQLEngine::buildConnectionAndDB(){
         return;
     }
 
-    str = "CREATE TABLE IF NOT EXISTS allInfoKladovki("
+    QString str{"CREATE TABLE IF NOT EXISTS allInfoKladovki("
                   "id INTEGER PRIMARY KEY AUTOINCREMENT, "
                   "address TEXT, "
                   "reck INTEGER, "
                   "shelf INTEGER, "
                   "thing TEXT "
-                  ");";
+                ");"};
 
     if(!query->exec(str)){
         emit errorConnectionSignal("Data Base Query Error!");
@@ -68,7 +66,7 @@ void SQLEngine::insertAddressQuery(QString queryText){
         return;
     }
 
-    QString str = "INSERT INTO addressKladovki( address ) VALUES ( '"+queryText+"' );";
+    QString str { "INSERT INTO addressKladovki( address ) VALUES ( '"+queryText+"' );"};
 
     if(!query->exec(str)){
         logging->messageHandler(Logger::WARNING,"SQLEngine","Request to"
@@ -88,8 +86,10 @@ void SQLEngine::insertAddressQuery(QString queryText){
 void SQLEngine::changeConnectionToALLINFO(){
 
 
-    //alldb.setDatabaseName(directory+"/allInfoKladovki.sqlite");
-    alldb.setDatabaseName("C:/Users/D/Documents/Kladovka/KladovkaProject/allInfoKladovki.sqlite");
+    alldb.setDatabaseName(directory+"/allInfoKladovki.sqlite");
+
+    //alldb.setDatabaseName("C:/Users/D/Documents/Kladovka/KladovkaProject/allInfoKladovki.sqlite");
+
     if(!alldb.open()){
         logging->messageHandler(Logger::CRITICAL,"SQLEngine","Data Base connection to"
                                                               " \"allInfoKladovki\" failed");
@@ -100,9 +100,10 @@ void SQLEngine::changeConnectionToALLINFO(){
 
 void SQLEngine::changeConnectionToADDRESSES(){
 
-    //alldb.setDatabaseName(directory+"/addressKladovki.sqlite");
+    alldb.setDatabaseName(directory+"/addressKladovki.sqlite");
 
-    alldb.setDatabaseName("C:/Users/D/Documents/Kladovka/KladovkaProject/addressKladovki.sqlite");
+    //alldb.setDatabaseName("C:/Users/D/Documents/Kladovka/KladovkaProject/addressKladovki.sqlite");
+
     if(!alldb.open()){
 
         logging->messageHandler(Logger::CRITICAL,"SQLEngine","Data Base connection to"
@@ -115,7 +116,7 @@ void SQLEngine::deleteTheKladovka(QString queryText){
 
     changeConnectionToADDRESSES();
 
-    QString str = "DELETE FROM addressKladovki WHERE address = '"+queryText+"';";
+    QString str {"DELETE FROM addressKladovki WHERE address = '"+queryText+"';"};
     if(!query->exec(str)){
 
         logging->messageHandler(Logger::WARNING,"SQLEngine","Delete request from"
@@ -140,8 +141,8 @@ void SQLEngine::insertIntoAllSlot(QString address,QString reck,QString shelf,QSt
 
     changeConnectionToALLINFO();
 
-    QString queryTxt = "INSERT INTO allInfoKladovki (address,reck,shelf,thing) "
-                       "VALUES ( '"+address+"' , '"+reck+"' , '"+shelf+"' , '"+thing+"' );";
+    QString queryTxt { "INSERT INTO allInfoKladovki (address,reck,shelf,thing) "
+                     "VALUES ( '"+address+"' , '"+reck+"' , '"+shelf+"' , '"+thing+"' );"};
     if(!query->exec(queryTxt)){
 
         logging->messageHandler(Logger::WARNING,"SQLEngine","Insert request to"
@@ -159,8 +160,8 @@ void SQLEngine::deleteThingAllSlot( QString address,QString reck,QString shelf,Q
 
     changeConnectionToALLINFO();
 
-    QString queryTxt = "DELETE FROM allInfoKladovki WHERE "
-        " address = '"+address+"' AND reck = '"+reck+"' AND shelf = '"+shelf+"' AND thing = '"+thing+"';";
+    QString queryTxt { "DELETE FROM allInfoKladovki WHERE "
+       " address = '"+address+"' AND reck = '"+reck+"' AND shelf = '"+shelf+"' AND thing = '"+thing+"';"};
     if(!query->exec(queryTxt)){
 
         logging->messageHandler(Logger::WARNING,"SQLEngine","Delete request from"
@@ -175,13 +176,13 @@ void SQLEngine::deleteThingAllSlot( QString address,QString reck,QString shelf,Q
     query->clear();
 }
 
-void SQLEngine::deleteThingAllByIDSlot(QString id){
+void SQLEngine::deleteThingAllByIDSlot(const QString id){
     if(id=="-1")return;
 
     changeConnectionToALLINFO();
 
-    QString queryTxt = "DELETE FROM allInfoKladovki WHERE "
-                       " id = "+id+" ;";
+    QString queryTxt { "DELETE FROM allInfoKladovki WHERE "
+                     " id = "+id+" ;"};
     if(!query->exec(queryTxt)){
 
         logging->messageHandler(Logger::WARNING,"SQLEngine","Delete request from"
@@ -197,7 +198,7 @@ void SQLEngine::updateThingPositionSlot(QString id,QString reck,QString shelf){
 
     changeConnectionToALLINFO();
 
-    QString queryText = "UPDATE allInfoKladovki SET reck = "+reck+" , shelf = "+shelf+" WHERE id = "+id;
+    QString queryText {"UPDATE allInfoKladovki SET reck = "+reck+" , shelf = "+shelf+" WHERE id = "+id};
 
     if(!query->exec(queryText)){
         logging->messageHandler(Logger::WARNING,"SQLEngine","Update position request in"

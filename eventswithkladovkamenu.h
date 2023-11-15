@@ -15,9 +15,9 @@ class EventsWithKladovkaMenu : public QWidget
 
 private:
 
-    QString addressText;
+    //QString addressText;
     QLabel *addressKladovkiLabel;
-    QPushButton *insertButton,/**deleteButton,*/*printAllButton,
+    QPushButton *insertButton,*printAllButton,
         *findKonkretThingButton,*backButton;
     QVBoxLayout *eventsMenuLayout;
 
@@ -27,7 +27,7 @@ public:
 
 public slots:
 
-    void becomeAddressTextSlot(QString address);
+    void becomeAddressTextSlot(const QString address);
 
 private slots:
 

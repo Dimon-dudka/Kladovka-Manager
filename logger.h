@@ -28,6 +28,6 @@ public:
 
     Logger();
 
-    void messageHandler(TypeError type,QString whereAccident,QString message);
+    void messageHandler(TypeError type,const QString whereAccident,const QString message);
     void clearTheFile();
 };

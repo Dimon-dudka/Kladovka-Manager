@@ -39,14 +39,12 @@ public:
     void changeConnectionToADDRESSES();
 
 public slots:
-    void insertAddressQuery(QString queryText);
-    void deleteTheKladovka(QString queryText);
-    void insertIntoAllSlot(QString address,QString reck,QString shelf,QString thing);
-    void deleteThingAllSlot(QString address,QString reck,QString shelf,QString thing);
-    void deleteThingAllByIDSlot(QString id);
-
-    //new
-    void updateThingPositionSlot(QString id,QString reck,QString shelf);
+    void insertAddressQuery(const QString queryText);
+    void deleteTheKladovka(const QString queryText);
+    void insertIntoAllSlot(const QString address,const QString reck,const QString shelf,const QString thing);
+    void deleteThingAllSlot(const QString address,const QString reck,const QString shelf,const QString thing);
+    void deleteThingAllByIDSlot(const QString id);
+    void updateThingPositionSlot(const QString id,const QString reck,const QString shelf);
 
 signals:
 

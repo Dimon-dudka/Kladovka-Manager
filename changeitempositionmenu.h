@@ -1,3 +1,5 @@
+// Menu where user can change position of some item
+
 #pragma once
 
 //  QT Libraris
@@ -33,15 +35,15 @@ public:
 
 private slots:
     void backButtonSlot();
-    void becomeReckStringFromLineSlot(QString reck);
-    void becomeShelfStringFromLineSlot(QString shelf);
+    void becomeReckStringFromLineSlot(const QString reck);
+    void becomeShelfStringFromLineSlot(const QString shelf);
     void changeButtonSlot();
 
 public slots:
 
-    void changeLabelsSlot(QString id,QString thing,QString reck,QString shelf);
+    void changeLabelsSlot(const QString id,const QString thing,const QString reck, const QString shelf);
 
 signals:
     void backSignal();
-    void changeSignal(QString id,QString reck, QString shelf);
+    void changeSignal(const QString id,const QString reck,const QString shelf);
 };

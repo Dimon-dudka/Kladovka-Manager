@@ -53,32 +53,32 @@ ChangeItemPositionMenu::ChangeItemPositionMenu(SQLEngine *engine,QWidget *parren
     setLayout(mainBoxLayout);
 }
 
-void ChangeItemPositionMenu::changeLabelsSlot(QString id,QString thing,QString reck,QString shelf){
-    idString = id;
-    itemString=thing;
-    reckString=reck;
-    shelfString=shelf;
-    thingNameLabel->setText(thing);
+void ChangeItemPositionMenu::changeLabelsSlot(const QString id,const QString thing,
+                                              const QString reck, const QString shelf){
+
+    idString=std::move(id);
+    itemString=std::move(thing);
+    reckString=std::move(reck);
+    shelfString=std::move(shelf);
+
+    thingNameLabel->setText(itemString);
 }
 
 void ChangeItemPositionMenu::backButtonSlot(){
     emit backSignal();
 }
 
-void ChangeItemPositionMenu::becomeReckStringFromLineSlot(QString reck){
-    reckString=reck;
+void ChangeItemPositionMenu::becomeReckStringFromLineSlot(const QString reck){
+    reckString=std::move(reck);
 }
 
-void ChangeItemPositionMenu::becomeShelfStringFromLineSlot(QString shelf){
-    shelfString=shelf;
+void ChangeItemPositionMenu::becomeShelfStringFromLineSlot(const QString shelf){
+    shelfString=std::move(shelf);
 }
 
 void ChangeItemPositionMenu::changeButtonSlot(){
     if(idString.isEmpty()||reckString.isEmpty()||shelfString.isEmpty())return;
     else{
-        emit changeSignal(idString,reckString,shelfString);
+        emit changeSignal(std::move(idString),std::move(reckString),std::move(shelfString));
     }
-    idString.clear();
-    reckString.clear();
-    shelfString.clear();
 }

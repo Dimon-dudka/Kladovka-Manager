@@ -62,29 +62,30 @@ NewKladovkaMenu::NewKladovkaMenu(SQLEngine *test,QWidget * parrent)
 
 void NewKladovkaMenu::goingToNewKladovkaSlot(){
 
-    if(sqlQueryStatus->text() !="Address added"){
+    if(!addressFromLabel.isEmpty()||sqlQueryStatus->text() !="Address added"){
         return;
     }
 
+    sqlQueryStatus->clear();
     emit goingToNewKladovkaSignal();
-    emit changeAddressSignal(addressFromLabel);
+    emit changeAddressSignal(std::move(addressFromLabel));
 }
 
 void NewKladovkaMenu::backToMainMenuSlot(){
+    sqlQueryStatus->clear();
     emit backToMainMenuSignal();
 }
 
-void NewKladovkaMenu::becomeStringFromLineEdit(QString txt){
-    addressFromLabel = txt;
+void NewKladovkaMenu::becomeStringFromLineEdit(const QString txt){
+    addressFromLabel=std::move(txt);
 }
 
 void NewKladovkaMenu::sendingSignalToSQLEngineSlot(){
 
     insertToDBAddress->changeConnectionToADDRESSES();
 
-    if(addressFromLabel=="")
+    if(addressFromLabel.isEmpty())
         return;
 
     emit queryToSQLEngineSignal(addressFromLabel);
-
 }

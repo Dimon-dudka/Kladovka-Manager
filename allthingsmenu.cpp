@@ -64,8 +64,8 @@ void AllThingsMenu::sendingBackSlot(){
     emit backSignal();
 }
 
-void AllThingsMenu::becomeAddressSlot(QString text){
-    addressString=text;
+void AllThingsMenu::becomeAddressSlot(const QString text){
+    addressString=std::move(text);
 }
 
 void AllThingsMenu::updateStuffTree(){
@@ -79,7 +79,7 @@ void AllThingsMenu::updateStuffTree(){
                         +addressString+"' ;";
     if(!connectionDB->query->exec(queryText)){
         logging->messageHandler(Logger::WARNING,"AllThingsMenu","Fail in request by updating tree widget");
-        qDebug()<<"Fail SQL Engine in <allthingsmenu.cpp>!";
+        //qDebug()<<"Fail SQL Engine in <allthingsmenu.cpp>!";
         return;
     }
 
@@ -96,7 +96,7 @@ void AllThingsMenu::updateStuffTree(){
     treeView->setColumnWidth(3,20);
 
     // Filling the widget with id, reck, shelf, thing information
-    QString tmpID="",tmpReck="",tmpShelf="", tmpThing="";
+    QString tmpID{""},tmpReck{""},tmpShelf{""}, tmpThing{""};
     while(connectionDB->query->next()){
 
         tmpID = connectionDB->query->value(rec.indexOf("id")).toString();
@@ -124,17 +124,13 @@ void AllThingsMenu::sendingDeleteQuerySlot(){
                                  QMessageBox::Yes|QMessageBox::No,QMessageBox::No);
     if(n==QMessageBox::No)return;
 
-    QString tmpId(std::move(idString));
-
-    emit deleteSignal(tmpId);
+    emit deleteSignal(std::move(idString));
 
 }
 
 void AllThingsMenu::changeSlot(){
     if(idString.isEmpty()||thingString.isEmpty()||reckString.isEmpty()||shelfString.isEmpty())return;
 
-    QString tmpId(std::move(idString)),tmpThing(std::move(thingString))
-        ,tmpReck(std::move(reckString)),tmpShelf(std::move(shelfString));
-
-    emit changeSignal(tmpId,tmpThing,tmpReck,tmpShelf);
+    emit changeSignal(std::move(idString),std::move(thingString)
+                      ,std::move(reckString),std::move(shelfString));
 }

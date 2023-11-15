@@ -53,8 +53,8 @@ void MainMenu::openSettingsMenuSlot(){
     emit openSettingsMenuSignal();
 }
 
-void MainMenu::changeLabelAfterError(QString text){
-    errorLabel->setText(text);
+void MainMenu::changeLabelAfterError(const QString text){
+    errorLabel->setText(std::move(text));
 
     QMessageBox::warning(0,"Warning","Data Base not found!",
                                  QMessageBox::Ok,QMessageBox::Ok);

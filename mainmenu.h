@@ -40,7 +40,7 @@ private slots:
 
 public slots:
 
-    void changeLabelAfterError(QString text);
+    void changeLabelAfterError(const QString text);
 
 signals:
 

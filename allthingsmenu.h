@@ -41,7 +41,7 @@ public:
 
 public slots:
 
-    void becomeAddressSlot(QString text);
+    void becomeAddressSlot(const QString text);
 
     //updating tree Widget after some action
     void updateStuffTree();

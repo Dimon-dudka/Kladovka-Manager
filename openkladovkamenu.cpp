@@ -4,7 +4,7 @@ OpenKladovkaMenu::OpenKladovkaMenu(Logger *logParrent,SQLEngine *connectParamete
     :QWidget(parrent),logging(logParrent),connectionDB(connectParameter)
 {
 
-    addressTxt = "";
+    addressTxt ="";
 
     someInfoLabel = new QLabel("Select kladovka address");
     someInfoLabel->setAlignment(Qt::AlignCenter);
@@ -51,7 +51,6 @@ void OpenKladovkaMenu::userAddressChoiseSlot(QTreeWidgetItem* test,int number){
 
 void OpenKladovkaMenu::deletingButtonSlot(){
     if(addressTxt.isEmpty())return;
-    if(addressTxt=="")return;
 
     int n = QMessageBox::warning(0,"Warning","The choisen option is deleting\n"
                                  "Do you want to delete choisen Kladovka?",
@@ -60,8 +59,7 @@ void OpenKladovkaMenu::deletingButtonSlot(){
 
 
     connectionDB->changeConnectionToADDRESSES();
-    connectionDB->deleteTheKladovka(addressTxt);
-    addressTxt="";
+    connectionDB->deleteTheKladovka(std::move(addressTxt));
 
     updateOfAddressesList();
 
@@ -72,8 +70,8 @@ void OpenKladovkaMenu::updateOfAddressesList(){
 
     connectionDB->changeConnectionToADDRESSES();
 
-    QString queryText = "SELECT address FROM addressKladovki ;";
-    QString tmpAddress = "";
+    QString queryText{"SELECT address FROM addressKladovki ;"};
+    QString tmpAddress {""};
 
     if(!connectionDB->query->exec(queryText)){
         logging->messageHandler(Logger::WARNING
@@ -101,7 +99,7 @@ void OpenKladovkaMenu::sendingbackToMainMenuSlot(){
 }
 
 void OpenKladovkaMenu::proofAddressAndSendSlot(){
-    if(addressTxt.isEmpty()||addressTxt=="")return;
+    if(addressTxt.isEmpty())return;
     emit sendTheAddressSignal(addressTxt);
     emit nextMenuSignal();
 }

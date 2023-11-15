@@ -3,11 +3,10 @@
 
 EventsWithKladovkaMenu::EventsWithKladovkaMenu(QWidget *parrent):QWidget(parrent)
 {
-    addressText="";
 
     addressKladovkiLabel = new QLabel;
     addressKladovkiLabel->setAlignment(Qt::AlignCenter);
-    addressKladovkiLabel->setText(addressText);
+    addressKladovkiLabel->setText("");
 
     QFont font=addressKladovkiLabel->font();
     font.setPointSize(10);
@@ -15,7 +14,6 @@ EventsWithKladovkaMenu::EventsWithKladovkaMenu(QWidget *parrent):QWidget(parrent
     addressKladovkiLabel->setFont(font);
 
     insertButton = new QPushButton("Insert/Delete Item");
-    //deleteButton = new QPushButton("Delete Item");
     printAllButton = new QPushButton("Print all stuff in the Kladovka");
     backButton = new QPushButton("Back");
 
@@ -33,9 +31,8 @@ EventsWithKladovkaMenu::EventsWithKladovkaMenu(QWidget *parrent):QWidget(parrent
     setLayout(eventsMenuLayout);
 }
 
-void EventsWithKladovkaMenu::becomeAddressTextSlot(QString address){
-    addressText=address;
-    addressKladovkiLabel->setText(addressText);
+void EventsWithKladovkaMenu::becomeAddressTextSlot(const QString address){
+    addressKladovkiLabel->setText(std::move(address));
 }
 
 void EventsWithKladovkaMenu::sendingBackSignalSlot(){
