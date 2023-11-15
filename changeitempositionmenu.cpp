@@ -5,36 +5,40 @@ ChangeItemPositionMenu::ChangeItemPositionMenu(SQLEngine *engine,QWidget *parren
     :QWidget(parrent),dataBaseconnection(engine)
 {
 
+    //Buttons setup
     backButton = new QPushButton("Back");
     changeButton = new QPushButton("Change");
 
+    //Layout setup
     mainBoxLayout = new QVBoxLayout;
     gridLayout = new QGridLayout;
 
+    //Label setup
     thingNameLabel = new QLabel("");
+    thingNameLabel->setAlignment(Qt::AlignCenter);
 
+    //Label font setup
     QFont font=thingNameLabel->font();
     font.setPointSize(13);
     font.setBold(true);
     thingNameLabel->setFont(font);
 
-    thingNameLabel->setAlignment(Qt::AlignCenter);
     changeReckLabel=new QLabel("Change Reck");
+    changeReckLabel->setAlignment(Qt::AlignCenter);
     changeShelfLabel = new QLabel("Change Shelf");
+    changeShelfLabel->setAlignment(Qt::AlignCenter);
 
+    //Line edit setup
     newReckLineEdit=new QLineEdit;
     newShelfLineEdit=new QLineEdit;
 
-    backButton=new QPushButton("Back");
-    changeButton = new QPushButton("Change");
-
+    //Seting of layouts
     gridLayout->addWidget(changeReckLabel,0,0);
     gridLayout->addWidget(changeShelfLabel,0,1);
     gridLayout->addWidget(newReckLineEdit,1,0);
     gridLayout->addWidget(newShelfLineEdit,1,1);
     gridLayout->addWidget(backButton,2,0);
     gridLayout->addWidget(changeButton,2,1);
-
     mainBoxLayout->addWidget(thingNameLabel);
     mainBoxLayout->addLayout(gridLayout);
 

@@ -56,6 +56,6 @@ private slots:
 signals:
 
     void backSignal();
-    void deleteSignal(QString id="-1");
+    void deleteSignal(QString id);
     void changeSignal(QString idString,QString item,QString reck,QString shelf);
 };

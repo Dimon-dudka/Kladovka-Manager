@@ -7,8 +7,6 @@
 #include <QString>
 #include <QLabel>
 #include <QLineEdit>
-#include <QMessageBox>
-
 #include <QGridLayout>
 
 //  Projects SQLite engine

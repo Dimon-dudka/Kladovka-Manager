@@ -20,7 +20,6 @@
 #include "insertdeletemenu.h"
 #include "allthingsmenu.h"
 #include "settingsmenu.h"
-
 #include "changeitempositionmenu.h"
 
 //  SQLite Engine
