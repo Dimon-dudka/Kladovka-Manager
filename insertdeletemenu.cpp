@@ -67,8 +67,11 @@ InsertDeleteMenu::InsertDeleteMenu(SQLEngine *engine,QWidget *parrent)
 
     //Line edit connections
     connect(reckLineEdit,SIGNAL(textChanged(QString)),this,SLOT(reckLabelToStringSlot(QString)));
+    connect(reckLineEdit,SIGNAL(textChanged(QString)),infoLabel,SLOT(clear()));
     connect(shelfLineEdit,SIGNAL(textChanged(QString)),this,SLOT(shelfLabelToStringSlot(QString)));
+    connect(shelfLineEdit,SIGNAL(textChanged(QString)),infoLabel,SLOT(clear()));
     connect(thingLineEdit,SIGNAL(textChanged(QString)),this,SLOT(thingLabelToStringSlot(QString)));
+    connect(thingLineEdit,SIGNAL(textChanged(QString)),infoLabel,SLOT(clear()));
 
     //SQL connections
     connect(dataBaseconnection,SIGNAL(insertInfoSignal(QString)),this,SLOT(becomeInfoLabelTextSlot(QString)));
@@ -78,20 +81,21 @@ InsertDeleteMenu::InsertDeleteMenu(SQLEngine *engine,QWidget *parrent)
 }
 
 void InsertDeleteMenu::reckLabelToStringSlot(const QString text){
-    reckString=std::move(text);
+    reckString=text;
 }
 void InsertDeleteMenu::shelfLabelToStringSlot(const QString text){
-    shelfString=std::move(text);
+    shelfString=text;
 }
 void InsertDeleteMenu::thingLabelToStringSlot(const QString text){
-    thingString=std::move(text);
+    thingString=text;
 }
 
 void InsertDeleteMenu::becomeAddressSlot(const QString address){
-    addressString=std::move(address);
+    addressString=address;
 }
 
 void InsertDeleteMenu::sendingBackSignalSlot(){
+    infoLabel->clear();
     emit backSignal();
 }
 
@@ -100,8 +104,11 @@ void InsertDeleteMenu::sendingInsertSignalSlot(){
         return;
     }
 
-    dataBaseconnection->insertIntoAllSlot(std::move(addressString),std::move(reckString)
+    dataBaseconnection->insertIntoAllSlot(addressString,std::move(reckString)
                                           ,std::move(shelfString),std::move(thingString));
+    QString tmp{infoLabel->text()};
+    erasingLineEdits();
+    infoLabel->setText(tmp);
 }
 
 void InsertDeleteMenu::sendingDeletingSignalSlot(){
@@ -115,10 +122,19 @@ void InsertDeleteMenu::sendingDeletingSignalSlot(){
                                  QMessageBox::Yes|QMessageBox::No,QMessageBox::No);
     if(n==QMessageBox::No)return;
 
-    dataBaseconnection->deleteThingAllSlot(std::move(addressString),std::move(reckString)
+    dataBaseconnection->deleteThingAllSlot(addressString,std::move(reckString)
                                            ,std::move(shelfString),std::move(thingString));
+
+    erasingLineEdits();
+
 }
 
 void InsertDeleteMenu::becomeInfoLabelTextSlot(const QString text){
-    infoLabel->setText(std::move(text));
+    infoLabel->setText(text);
+}
+
+void InsertDeleteMenu::erasingLineEdits(){
+    reckLineEdit->clear();
+    shelfLineEdit->clear();
+    thingLineEdit->clear();
 }

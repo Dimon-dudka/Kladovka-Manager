@@ -47,6 +47,8 @@ NewKladovkaMenu::NewKladovkaMenu(SQLEngine *test,QWidget * parrent)
     //Line edit connections
     connect(addressEditingLine,SIGNAL(textChanged(QString))
             ,this,SLOT(becomeStringFromLineEdit(QString)));
+    connect(addressEditingLine,SIGNAL(textChanged(QString)),
+            sqlQueryStatus,SLOT(clear()));
 
     //SQL connections
     connect(this,SIGNAL(queryToSQLEngineSignal(QString))
@@ -62,13 +64,14 @@ NewKladovkaMenu::NewKladovkaMenu(SQLEngine *test,QWidget * parrent)
 
 void NewKladovkaMenu::goingToNewKladovkaSlot(){
 
-    if(!addressFromLabel.isEmpty()||sqlQueryStatus->text() !="Address added"){
+    if(addressFromLabel.isEmpty()||sqlQueryStatus->text() !="Address added"){
         return;
     }
 
     sqlQueryStatus->clear();
     emit goingToNewKladovkaSignal();
     emit changeAddressSignal(std::move(addressFromLabel));
+    addressEditingLine->clear();
 }
 
 void NewKladovkaMenu::backToMainMenuSlot(){

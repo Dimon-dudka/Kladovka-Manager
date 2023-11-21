@@ -31,6 +31,8 @@ private:
     QPushButton *backButton,*insertButton,*deleteButton;
     QGridLayout *insertDeleteMenuLayout;
 
+    void erasingLineEdits();
+
 public:
     InsertDeleteMenu(SQLEngine *engine,QWidget *parrent =0);
 

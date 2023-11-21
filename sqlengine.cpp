@@ -57,7 +57,7 @@ void SQLEngine::buildConnectionAndDB(){
     query->clear();
 }
 
-void SQLEngine::insertAddressQuery(QString queryText){
+void SQLEngine::insertAddressQuery(const QString queryText){
 
     changeConnectionToADDRESSES();
 
