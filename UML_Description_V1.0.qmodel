@@ -49,7 +49,7 @@
                          </base-DElement>
                          <object>{bce0dadb-5e2d-49a4-976f-68d98d9a3d58}</object>
                          <name>main</name>
-                         <pos>x:190;y:635</pos>
+                         <pos>x:190;y:540</pos>
                          <rect>x:-55;y:-30;w:110;h:60</rect>
                          <auto-sized>false</auto-sized>
                          <visual-role>0</visual-role>
@@ -108,7 +108,7 @@
                          </base-DElement>
                          <object>{c42d4806-eb64-442c-9483-051ed4d4c506}</object>
                          <name>MainMenu</name>
-                         <pos>x:375;y:165</pos>
+                         <pos>x:305;y:245</pos>
                          <rect>x:-50;y:-35;w:100;h:70</rect>
                          <visual-role>0</visual-role>
                         </DObject>
@@ -164,7 +164,7 @@
                          </base-DElement>
                          <object>{abe5d4b2-86f8-4afe-a3e7-8f9ee282ec0a}</object>
                          <name>NewKladovkaMenu</name>
-                         <pos>x:-160;y:300</pos>
+                         <pos>x:-115;y:30</pos>
                          <rect>x:-65;y:-35;w:130;h:70</rect>
                          <visual-role>0</visual-role>
                         </DObject>
@@ -220,7 +220,7 @@
                          </base-DElement>
                          <object>{0870448e-1e5a-4147-be77-2ca1b92b9e12}</object>
                          <name>OpenKladovka</name>
-                         <pos>x:-215;y:105</pos>
+                         <pos>x:-145;y:350</pos>
                          <rect>x:-55;y:-35;w:110;h:70</rect>
                          <visual-role>0</visual-role>
                         </DObject>
@@ -332,7 +332,7 @@
                          </base-DElement>
                          <object>{c3ec3ae0-6ef8-4eaa-b52a-71ef7e2b431d}</object>
                          <name>AllThingsMenu</name>
-                         <pos>x:295;y:-50</pos>
+                         <pos>x:225;y:-5</pos>
                          <rect>x:-55;y:-35;w:110;h:70</rect>
                          <visual-role>0</visual-role>
                         </DObject>
@@ -388,7 +388,7 @@
                          </base-DElement>
                          <object>{ab9c7239-7e2f-44c1-afe8-832a7ab51361}</object>
                          <name>EventsWithKladovka</name>
-                         <pos>x:75;y:-30</pos>
+                         <pos>x:60;y:30</pos>
                          <rect>x:-65;y:-35;w:130;h:70</rect>
                          <visual-role>0</visual-role>
                         </DObject>
@@ -444,7 +444,7 @@
                          </base-DElement>
                          <object>{6fb9242c-d2cf-490e-bbb7-42f6975780db}</object>
                          <name>InsertDeleteMenu</name>
-                         <pos>x:-100;y:25</pos>
+                         <pos>x:-125;y:215</pos>
                          <rect>x:-60;y:-35;w:120;h:70</rect>
                          <visual-role>0</visual-role>
                         </DObject>
@@ -500,7 +500,7 @@
                          </base-DElement>
                          <object>{851402a6-3e50-4ccc-bb1e-0425f340797c}</object>
                          <name>SQLEngine</name>
-                         <pos>x:-420;y:-155</pos>
+                         <pos>x:-375;y:-100</pos>
                          <rect>x:-50;y:-35;w:100;h:70</rect>
                          <visual-role>0</visual-role>
                         </DObject>
@@ -658,7 +658,7 @@
                          </base-DElement>
                          <object>{5cbbfdd9-f12b-444f-be11-e078b1e5e1a4}</object>
                          <name>Logger</name>
-                         <pos>x:-165;y:610</pos>
+                         <pos>x:-205;y:470</pos>
                          <rect>x:-50;y:-35;w:100;h:70</rect>
                          <visual-role>0</visual-role>
                         </DObject>
@@ -742,7 +742,7 @@
                           </qlist>
                          </stereotypes>
                          <name>allInfoKladovki</name>
-                         <pos>x:-525;y:15</pos>
+                         <pos>x:-495;y:25</pos>
                          <rect>x:-20;y:-20;w:40;h:40</rect>
                          <visual-role>0</visual-role>
                         </DObject>
@@ -808,7 +808,7 @@
                           </qlist>
                          </stereotypes>
                          <name>addressKladovki</name>
-                         <pos>x:-440;y:20</pos>
+                         <pos>x:-405;y:35</pos>
                          <rect>x:-20;y:-20;w:40;h:40</rect>
                          <visual-role>0</visual-role>
                         </DObject>
@@ -877,7 +877,7 @@
                     </item>
                    </qlist>
                   </elements>
-                  <last-modified>1696621738572</last-modified>
+                  <last-modified>1701871885488</last-modified>
                   <toolbarid>Classes</toolbarid>
                  </MDiagram>
                 </base-MDiagram>
