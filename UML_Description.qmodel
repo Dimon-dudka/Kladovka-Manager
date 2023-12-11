@@ -857,27 +857,9 @@
                       </DDependency>
                      </instance>
                     </item>
-                    <item>
-                     <instance type="DDependency">
-                      <DDependency>
-                       <base-DRelation>
-                        <DRelation>
-                         <base-DElement>
-                          <DElement>
-                           <uid>{97decc01-b45c-407f-b6ef-2c0ec3e865ff}</uid>
-                          </DElement>
-                         </base-DElement>
-                         <object>{ea79d92e-0e64-435d-83db-ca46f0360126}</object>
-                         <a>{29166bfe-c3c9-4d6c-85b2-6ac220a49e15}</a>
-                         <b>{c13445fb-30b9-4432-ade3-6a790a266b6c}</b>
-                        </DRelation>
-                       </base-DRelation>
-                      </DDependency>
-                     </instance>
-                    </item>
                    </qlist>
                   </elements>
-                  <last-modified>1701871885488</last-modified>
+                  <last-modified>1701872008880</last-modified>
                   <toolbarid>Classes</toolbarid>
                  </MDiagram>
                 </base-MDiagram>
