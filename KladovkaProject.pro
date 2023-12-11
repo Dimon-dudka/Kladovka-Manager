@@ -50,5 +50,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 RESOURCES += rec.qrc
 
 DISTFILES += \
-    UML_Description_V1.0.qmodel
+    UML_Description.qmodel
 
