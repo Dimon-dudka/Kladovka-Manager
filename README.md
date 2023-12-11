@@ -17,8 +17,9 @@ It is a manager of storages, storerooms, etc. Implements the ability to add and 
 Widgets are managed, as well as the connection of the main signals for interaction takes place in the "WidgetManager" class, which is inherited from the "Qstackedwidget" class. The rest of the widget classes describe the interface and basic user interactions. There are also two classes with which the user does not interact directly. These are the "SQLEngine" and "Logger" classes. "SQLEngine" - implements the engine and interfaces for working with databases. "Logger" - records all major errors in the .log file, and also provides the ability to clean this file for the user
 
 ## Program structure
-
+The general structure of the application classes:
+![Project structure](https://github.com/Dimon-dudka/Kladovka-Manager/blob/main/UML_Base_desc.png)
 
 ## App versions:
-V 1.0 - 24.08.2023, Release version
-V 1.1 - 15.11.2023 New fiches, and bug fix. Added the ability to change the position of items in the warehouse. Added the ability to go to the warehouse action menu immediately after its creation. Speed boost(in some places now are used the move semantics)
+- V 1.0 - 24.08.2023, Release version
+- V 1.1 - 15.11.2023 New fiches, and bug fix. Added the ability to change the position of items in the warehouse. Added the ability to go to the warehouse action menu immediately after its creation. Speed boost(in some places now used the move semantics)
