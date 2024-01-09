@@ -24,4 +24,4 @@ The general structure of the application classes:
 ## App versions:
 - V 1.0 - 24.08.2023, Release version
 - V 1.1 - 15.11.2023 New fiches, and bug fix. Added the ability to change the position of items in the warehouse. Added the ability to go to the warehouse action menu immediately after its creation. Speed boost(in some places now used the move semantics)
-- V 1.2 - 09.01.2024 Build system changed to CMake, dasic C++ pointers changed to smart pointers
+- V 1.2 - 09.01.2024 Build system changed to CMake, basic C++ pointers changed to smart pointers
