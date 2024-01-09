@@ -9,6 +9,7 @@
 #include <QBoxLayout>
 #include <QLineEdit>
 #include <QLabel>
+#include <QPointer>
 #include <QString>
 
 //  Projects own SQLite engine
@@ -20,12 +21,12 @@ class NewKladovkaMenu : public QWidget
 
 private:
 
-    SQLEngine *insertToDBAddress;
-    QPushButton *backToMainMenuButton,*pushTheAddressToSQLButton,*openNewKladovka;
-    QVBoxLayout *mainLayout;
-    QHBoxLayout *buttonsLayout;
-    QLineEdit *addressEditingLine;
-    QLabel *userInfoLabel,*sqlQueryStatus;
+    QPointer<SQLEngine>insertToDBAddress;
+    QPointer<QPushButton>backToMainMenuButton,pushTheAddressToSQLButton,openNewKladovka;
+    QPointer<QVBoxLayout>mainLayout;
+    QPointer<QHBoxLayout>buttonsLayout;
+    QPointer<QLineEdit>addressEditingLine;
+    QPointer<QLabel>userInfoLabel,sqlQueryStatus;
     QString addressFromLabel;
 
 public:

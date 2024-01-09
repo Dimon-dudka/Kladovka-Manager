@@ -78,7 +78,7 @@ void AllThingsMenu::updateStuffTree(){
     QString queryText = "SELECT id, reck, shelf, thing FROM allInfoKladovki WHERE address = '"
                         +addressString+"' ;";
     if(!connectionDB->query->exec(queryText)){
-        logging->messageHandler(Logger::WARNING,"AllThingsMenu","Fail in request by updating tree widget");
+        logging->messageHandler(Logger::TypeError::WARNING,"AllThingsMenu","Fail in request by updating tree widget");
         //qDebug()<<"Fail SQL Engine in <allthingsmenu.cpp>!";
         return;
     }

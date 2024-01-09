@@ -21,7 +21,7 @@ MainMenu::MainMenu(SQLEngine *test,QWidget *parrent) : QWidget(parrent),DBOpenPr
     settingsButton = new QPushButton("Settings");
     exitButton = new QPushButton("Exit");
 
-    infoLabel = new QLabel("Made by Dudin Dmitrii\nv 1.1");
+    infoLabel = new QLabel("Made by Dudin Dmitrii\nv 1.2");
     infoLabel->setAlignment(Qt::AlignCenter);
 
     mainMenuLayout = new QVBoxLayout;

@@ -11,6 +11,7 @@
 #include <QLabel>
 #include <QBoxLayout>
 #include <QString>
+#include <QPointer>
 #include <QMessageBox>
 
 //  Projects own SQLite engine
@@ -25,14 +26,14 @@ class OpenKladovkaMenu : public QWidget
 
 private:
 
-    Logger *logging;
+    QPointer<Logger>logging;
 
-    SQLEngine *connectionDB;
-    QLabel *someInfoLabel;
-    QVBoxLayout *menuLayout;
-    QHBoxLayout *buttonsLayout;
-    QPushButton *backMainMenuButton,*acceptChoiseAndNextButton,*deleteKladovkaButton;
-    QTreeWidget *treeView;
+    QPointer<SQLEngine>connectionDB;
+    QPointer<QLabel>someInfoLabel;
+    QPointer<QVBoxLayout>menuLayout;
+    QPointer<QHBoxLayout>buttonsLayout;
+    QPointer<QPushButton>backMainMenuButton,acceptChoiseAndNextButton,deleteKladovkaButton;
+    QPointer<QTreeWidget>treeView;
     QTreeWidgetItem *treeItem;
     QString addressTxt;
 

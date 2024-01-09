@@ -8,6 +8,7 @@
 #include <QBoxLayout>
 #include <QLabel>
 #include <QString>
+#include <QPointer>
 
 class EventsWithKladovkaMenu : public QWidget
 {
@@ -16,10 +17,10 @@ class EventsWithKladovkaMenu : public QWidget
 private:
 
     //QString addressText;
-    QLabel *addressKladovkiLabel;
-    QPushButton *insertButton,*printAllButton,
-        *findKonkretThingButton,*backButton;
-    QVBoxLayout *eventsMenuLayout;
+    QPointer<QLabel>addressKladovkiLabel;
+    QPointer<QPushButton>insertButton,printAllButton,
+        findKonkretThingButton,backButton;
+    QPointer<QVBoxLayout>eventsMenuLayout;
 
 public:
 

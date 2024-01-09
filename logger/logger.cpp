@@ -1,10 +1,9 @@
 #include "logger.h"
 
-Logger::Logger()
+Logger::Logger(QObject * parrent):QObject(parrent)
 {
     direction=QFileInfo(QCoreApplication::applicationFilePath()).path();
     logFile.reset(new QFile(direction+"/logFile.log"));
-    //logFile.reset(new QFile("C:/Users/D/Documents/Kladovka/KladovkaProject/logFile.log"));
     logFile.data()->open(QFile::Append|QFile::Text);
 }
 

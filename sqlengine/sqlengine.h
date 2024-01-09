@@ -7,6 +7,7 @@
 #include <QObject>
 #include <QString>
 #include <QCoreApplication>
+#include <QPointer>
 
 //  Logger
 #include "logger.h"
@@ -20,7 +21,7 @@ private:
     //Basic DB connection
     QSqlDatabase alldb;
 
-    Logger *logging;
+    QPointer<Logger>logging;
 
     QString directory;
 
