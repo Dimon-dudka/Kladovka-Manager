@@ -10,6 +10,7 @@
 #include <QLabel>
 #include <QLineEdit>
 #include <QGridLayout>
+#include <QPointer>
 
 //  Projects SQLite engine
 #include "sqlengine.h"
@@ -22,13 +23,13 @@ private:
 
     QString itemString{""},reckString{""},shelfString{""},idString{""};
 
-    QVBoxLayout *mainBoxLayout;
-    QGridLayout *gridLayout;
-    QLabel *thingNameLabel,*changeReckLabel,*changeShelfLabel;
-    QLineEdit *newReckLineEdit,*newShelfLineEdit;
-    QPushButton *backButton,*changeButton;
+    QPointer<QVBoxLayout>mainBoxLayout;
+    QPointer<QGridLayout>gridLayout;
+    QPointer<QLabel>thingNameLabel,changeReckLabel,changeShelfLabel;
+    QPointer<QLineEdit>newReckLineEdit,newShelfLineEdit;
+    QPointer<QPushButton>backButton,changeButton;
 
-    SQLEngine *dataBaseconnection;
+    QPointer<SQLEngine>dataBaseconnection;
 
 public:
     ChangeItemPositionMenu(SQLEngine *engine,QWidget *parrent=0);

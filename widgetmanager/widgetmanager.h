@@ -4,13 +4,11 @@
 
 #pragma once
 
-//  Standart Libraryes
-#include <QSharedPointer>
-
 //  QT  Libraryes
 #include <QApplication>
 #include <QWidget>
 #include <QStackedWidget>
+#include <QPointer>
 
 //  Derived from QWidget widgets
 #include "mainmenu.h"
@@ -35,16 +33,16 @@ class WidgetManager : public QStackedWidget
 
 private:
 
-    Logger *logging;
-    SQLEngine *test;
-    MainMenu *mainMenuWidget;
-    NewKladovkaMenu *newKladovkaMenuWidget;
-    OpenKladovkaMenu *openKladovkaWidget;
-    EventsWithKladovkaMenu *eventKladovkaWidget;
-    InsertDeleteMenu *insertDeleteMenuWidget;
-    AllThingsMenu *allThingsMenuWidget;
-    SettingsMenu *settingsMenu;
-    ChangeItemPositionMenu *changePositionMenuWidget;
+    QPointer<Logger>logging;
+    QPointer<SQLEngine>test;
+    QPointer<MainMenu>mainMenuWidget;
+    QPointer<NewKladovkaMenu>newKladovkaMenuWidget;
+    QPointer<OpenKladovkaMenu>openKladovkaWidget;
+    QPointer<EventsWithKladovkaMenu>eventKladovkaWidget;
+    QPointer<InsertDeleteMenu>insertDeleteMenuWidget;
+    QPointer<AllThingsMenu>allThingsMenuWidget;
+    QPointer<SettingsMenu>settingsMenu;
+    QPointer<ChangeItemPositionMenu>changePositionMenuWidget;
 
 public:
 

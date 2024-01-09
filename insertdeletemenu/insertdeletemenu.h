@@ -8,6 +8,7 @@
 #include <QGridLayout>
 #include <QLabel>
 #include <QString>
+#include <QPointer>
 #include <QLineEdit>
 #include <QMessageBox>
 #include <QBoxLayout>
@@ -21,15 +22,15 @@ class InsertDeleteMenu : public QWidget
 
 private:
 
-    QBoxLayout *labelsLayout,*editLayout,*buttonsLayout;
-    QVBoxLayout *allLayout;
+    QPointer<QBoxLayout>labelsLayout,editLayout,buttonsLayout;
+    QPointer<QVBoxLayout>allLayout;
 
-    SQLEngine *dataBaseconnection;
+    QPointer<SQLEngine>dataBaseconnection;
     QString addressString,reckString,shelfString,thingString;
-    QLabel *reckLabel,*shelfLabel,*thingLabel,*infoLabel;
-    QLineEdit *reckLineEdit,*shelfLineEdit,*thingLineEdit;
-    QPushButton *backButton,*insertButton,*deleteButton;
-    QGridLayout *insertDeleteMenuLayout;
+    QPointer<QLabel>reckLabel,shelfLabel,thingLabel,infoLabel;
+    QPointer<QLineEdit>reckLineEdit,shelfLineEdit,thingLineEdit;
+    QPointer<QPushButton>backButton,insertButton,deleteButton;
+    QPointer<QGridLayout> insertDeleteMenuLayout;
 
     void erasingLineEdits();
 

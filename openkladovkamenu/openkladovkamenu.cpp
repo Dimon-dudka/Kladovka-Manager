@@ -74,7 +74,7 @@ void OpenKladovkaMenu::updateOfAddressesList(){
     QString tmpAddress {""};
 
     if(!connectionDB->query->exec(queryText)){
-        logging->messageHandler(Logger::WARNING
+        logging->messageHandler(Logger::TypeError::WARNING
                                 ,"OpenKladovkaMenu"
                                 ,"Fail in request by updating addresses list");
 

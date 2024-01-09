@@ -11,7 +11,7 @@
 #include <QCoreApplication>
 #include <QString>
 
-class Logger
+class Logger : public QObject
 {
 private:
 
@@ -21,12 +21,12 @@ private:
 
 public:
 
-    enum TypeError{
+    enum class TypeError{
         WARNING,
         CRITICAL
     };
 
-    Logger();
+    Logger(QObject * parrent = 0);
 
     void messageHandler(TypeError type,const QString whereAccident,const QString message);
     void clearTheFile();

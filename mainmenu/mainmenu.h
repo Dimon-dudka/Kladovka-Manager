@@ -9,6 +9,7 @@
 #include <QApplication>
 #include <QLabel>
 #include <QString>
+#include <QPointer>
 #include <QMessageBox>
 
 //  Projects own SQLite engine
@@ -21,11 +22,11 @@ class MainMenu : public QWidget
 
 private:
 
-    SQLEngine *DBOpenProof;
-    QPushButton *newKladovkaButton,
-        *openExistsKladovkaButton, *exitButton,*settingsButton;
-    QVBoxLayout *mainMenuLayout;
-    QLabel *infoLabel,*errorLabel;
+    QPointer<SQLEngine>DBOpenProof;
+    QPointer<QPushButton>newKladovkaButton,
+        openExistsKladovkaButton, exitButton,settingsButton;
+    QPointer<QVBoxLayout>mainMenuLayout;
+    QPointer<QLabel>infoLabel,errorLabel;
 
 public:
 

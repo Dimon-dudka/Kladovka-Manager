@@ -8,6 +8,7 @@
 #include <QBoxLayout>
 #include <QString>
 #include <QLabel>
+#include <QPointer>
 #include <QMessageBox>
 #include <QTreeWidget>
 
@@ -24,15 +25,15 @@ class AllThingsMenu : public QWidget
 
 private:
 
-    Logger *logging;
+    QPointer<Logger>logging;
 
-    SQLEngine *connectionDB;
-    QPushButton *backButton,*deleteButton,*changeButton;
-    QTreeWidget *treeView;
+    QPointer<SQLEngine>connectionDB;
+    QPointer<QPushButton>backButton,deleteButton,changeButton;
+    QPointer<QTreeWidget>treeView;
     QTreeWidgetItem *treeItem;
-    QVBoxLayout *AllThingsLayout;
-    QHBoxLayout *buttonsLayout;
-    QLabel *userInfoLabel;
+    QPointer<QVBoxLayout>AllThingsLayout;
+    QPointer<QHBoxLayout>buttonsLayout;
+    QPointer<QLabel>userInfoLabel;
     QString addressString,reckString,shelfString,thingString,idString;
 
 public:

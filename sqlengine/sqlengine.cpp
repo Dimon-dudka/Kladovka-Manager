@@ -27,7 +27,7 @@ void SQLEngine::buildConnectionAndDB(){
 
     if(!query->exec(str)){
         emit errorConnectionSignal("Data Base Query Error!");
-        logging->messageHandler(Logger::CRITICAL,"SQLEngine","Data Base query to \"allInfoKladovki\" "
+        logging->messageHandler(Logger::TypeError::CRITICAL,"SQLEngine","Data Base query to \"allInfoKladovki\" "
                                                               "not open");
         return;
     }
@@ -49,7 +49,7 @@ void SQLEngine::buildConnectionAndDB(){
 
     if(!query->exec(str)){
         emit errorConnectionSignal("Data Base Query Error!");
-        logging->messageHandler(Logger::CRITICAL,"SQLEngine","Data Base query to \"allInfoKladovki\" "
+        logging->messageHandler(Logger::TypeError::CRITICAL,"SQLEngine","Data Base query to \"allInfoKladovki\" "
                                                               "not open");
         return;
     }
@@ -69,7 +69,7 @@ void SQLEngine::insertAddressQuery(const QString queryText){
     QString str { "INSERT INTO addressKladovki( address ) VALUES ( '"+queryText+"' );"};
 
     if(!query->exec(str)){
-        logging->messageHandler(Logger::WARNING,"SQLEngine","Request to"
+        logging->messageHandler(Logger::TypeError::WARNING,"SQLEngine","Request to"
                                                               " \"addressKladovki\" failed");
 
         emit addressAlreadyExistsSignal("Address Already Exists");
@@ -91,7 +91,7 @@ void SQLEngine::changeConnectionToALLINFO(){
     //alldb.setDatabaseName("C:/Users/D/Documents/Kladovka/KladovkaProject/allInfoKladovki.sqlite");
 
     if(!alldb.open()){
-        logging->messageHandler(Logger::CRITICAL,"SQLEngine","Data Base connection to"
+        logging->messageHandler(Logger::TypeError::CRITICAL,"SQLEngine","Data Base connection to"
                                                               " \"allInfoKladovki\" failed");
     }
     query->clear();
@@ -106,7 +106,7 @@ void SQLEngine::changeConnectionToADDRESSES(){
 
     if(!alldb.open()){
 
-        logging->messageHandler(Logger::CRITICAL,"SQLEngine","Data Base connection to"
+        logging->messageHandler(Logger::TypeError::CRITICAL,"SQLEngine","Data Base connection to"
                                                               " \"addressKladovki\" failed");
     }
     query->clear();
@@ -119,7 +119,7 @@ void SQLEngine::deleteTheKladovka(QString queryText){
     QString str {"DELETE FROM addressKladovki WHERE address = '"+queryText+"';"};
     if(!query->exec(str)){
 
-        logging->messageHandler(Logger::WARNING,"SQLEngine","Delete request from"
+        logging->messageHandler(Logger::TypeError::WARNING,"SQLEngine","Delete request from"
                                                               " \"addressKladovki\" failed");
     }
 
@@ -130,7 +130,7 @@ void SQLEngine::deleteTheKladovka(QString queryText){
     str = "DELETE FROM allInfoKladovki WHERE address = '"+queryText+"';";
     if(!query->exec(str)){
 
-        logging->messageHandler(Logger::WARNING,"SQLEngine","Delete request from"
+        logging->messageHandler(Logger::TypeError::WARNING,"SQLEngine","Delete request from"
                                                              " \"allInfoKladovki\" by address failed");
     }
 
@@ -145,7 +145,7 @@ void SQLEngine::insertIntoAllSlot(QString address,QString reck,QString shelf,QSt
                      "VALUES ( '"+address+"' , '"+reck+"' , '"+shelf+"' , '"+thing+"' );"};
     if(!query->exec(queryTxt)){
 
-        logging->messageHandler(Logger::WARNING,"SQLEngine","Insert request to"
+        logging->messageHandler(Logger::TypeError::WARNING,"SQLEngine","Insert request to"
                                                              " \"allInfoKladovki\" failed");
 
         emit insertInfoSignal("Insert error!");
@@ -164,7 +164,7 @@ void SQLEngine::deleteThingAllSlot( QString address,QString reck,QString shelf,Q
        " address = '"+address+"' AND reck = '"+reck+"' AND shelf = '"+shelf+"' AND thing = '"+thing+"';"};
     if(!query->exec(queryTxt)){
 
-        logging->messageHandler(Logger::WARNING,"SQLEngine","Delete request from"
+        logging->messageHandler(Logger::TypeError::WARNING,"SQLEngine","Delete request from"
                                  " \"allInfoKladovki\" by address,reck,shelf,thing address failed");
 
         emit insertInfoSignal("Deleting error!");
@@ -185,7 +185,7 @@ void SQLEngine::deleteThingAllByIDSlot(const QString id){
                      " id = "+id+" ;"};
     if(!query->exec(queryTxt)){
 
-        logging->messageHandler(Logger::WARNING,"SQLEngine","Delete request from"
+        logging->messageHandler(Logger::TypeError::WARNING,"SQLEngine","Delete request from"
                                                              " \"allInfoKladovki\" by id failed");
     }else{
 
@@ -201,7 +201,7 @@ void SQLEngine::updateThingPositionSlot(QString id,QString reck,QString shelf){
     QString queryText {"UPDATE allInfoKladovki SET reck = "+reck+" , shelf = "+shelf+" WHERE id = "+id};
 
     if(!query->exec(queryText)){
-        logging->messageHandler(Logger::WARNING,"SQLEngine","Update position request in"
+        logging->messageHandler(Logger::TypeError::WARNING,"SQLEngine","Update position request in"
                                                               " \"allInfoKladovki\" by id failed");
     }else{
         emit updataingTreeSignal();

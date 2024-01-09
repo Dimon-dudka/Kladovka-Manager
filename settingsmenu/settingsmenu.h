@@ -6,6 +6,7 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QMessageBox>
+#include <QPointer>
 
 //  Logger
 #include "logger.h"
@@ -15,10 +16,10 @@ class SettingsMenu : public QWidget
     Q_OBJECT
 private:
 
-    QLabel *infoLabel;
-    Logger *logFile;
-    QPushButton *backButton,*clearLogFileButton;
-    QVBoxLayout *menuLayout;
+    QPointer<QLabel>infoLabel;
+    QPointer<Logger>logFile;
+    QPointer<QPushButton>backButton,clearLogFileButton;
+    QPointer<QVBoxLayout>menuLayout;
 
 public:
     SettingsMenu(Logger *logParrent,QWidget *parrent=0);
